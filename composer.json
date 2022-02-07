@@ -1,16 +1,39 @@
 {
     "name": "webshotapi/client",
-    "description": "Take screenshot and save image in JPG, PNG, PDF",
-    "type": "library",
+    "description": "Webshotapi Api Client for PHP",
+    "type": "project",
     "license": "MIT",
-    "homepage": "https://webshotapi.com",
-    "require-dev": {
-        "phpunit/phpunit": "^6.5"
-    },
-    "autoload":{
-        "psr-4":{
-            "Webshotapi\\Client\\":"src/"
+    "autoload": {
+        "psr-4": {
+            "Webshotapi\\Client\\": "src/"
         }
     },
-    "require": {}
+    "autoload-dev": {
+        "psr-4": {
+            "Webshotapi\\Client\\Tests\\": "tests/"
+        }
+    },
+    "homepage": "https://webshotapi.com",
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/webshotapi/webshotapi-website-screenshot-php-client"
+    }
+    ],
+    "authors": [
+        {
+            "name": "Webshotapi",
+            "email": "contact@webshotapi.com"
+        }
+    ],
+    "scripts": {
+        "test": "./vendor/bin/phpunit -c phpunit.dist.xml"
+    },
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": ">=6.5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=6"
+    }
 }
