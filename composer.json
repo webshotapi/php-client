@@ -26,7 +26,8 @@
         }
     ],
     "scripts": {
-        "test": "./vendor/bin/phpunit -c phpunit.dist.xml"
+        "test": "./vendor/bin/phpunit -c phpunit.dist.xml",
+        "doc:gen": "phpdoc -d ./src -t ./docs"
     },
     "require": {
         "php": ">=7.0",

@@ -10,7 +10,10 @@ class WebshotApiClient {
     private $endpoint;
     private $timeout = 30;
 
-    function __construct($api_key){
+    /**
+     * @param string $api_key
+     */
+    function __construct(string $api_key){
         $this->api_key = $api_key;
         $this->endpoint = getenv('WEBSHOTAPI_ENV') == 'dev' ? 'http://localhost:3000' : 'https://api.webshotapi.com/v1';
     }
@@ -23,12 +26,13 @@ class WebshotApiClient {
      * @return Response
      * @throws Exceptions\WebshotApiClientException
      */
-    function pdf(string $url, array $data){
+    function pdf(string $url, array $data): Response{
         return $this->screenshot($url, $data, 'image', 'pdf');
     }
 
     /**
      * Create screenshot for specific url and params
+     * If you want to create png format call $client->screenshot('https://example.com',[],'image','png');
      *
      * @param string $url
      * @param array $data
@@ -37,7 +41,7 @@ class WebshotApiClient {
      * @return Response
      * @throws Exceptions\WebshotApiClientException
      */
-    function screenshot(string $url, array $data, string $response_type='image', string $file_type='jpg'){
+    function screenshot(string $url, array $data, string $response_type='image', string $file_type='jpg'): Response{
 
         if(!in_array($response_type,['image','json']))
             throw new WebshotApiClientException('Wrong response type accept only image or json');
@@ -64,14 +68,14 @@ class WebshotApiClient {
 
     /**
      * Extract html, plain text, words coordinates with styles
-     * @example $client->extract('https://example.com,['words'=>true]
+     * @example $client->extract('https://example.com,['extract_words'=>true]);
      *
      * @param string $url
      * @param array $data
      * @return Response
      * @throws Exceptions\WebshotApiClientException
      */
-    function extract(string $url, array $data){
+    function extract(string $url, array $data): Response{
 
         $data['link'] = $url;
 
@@ -100,7 +104,7 @@ class WebshotApiClient {
      * @return Response
      * @throws Exceptions\WebshotApiClientException
      */
-    function info(){
+    function info(): Response{
         $base = new Base($this);
         return $base->method([
             'path' => '/info',
