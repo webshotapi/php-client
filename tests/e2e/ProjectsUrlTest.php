@@ -18,6 +18,7 @@ class ProjectsUrlTest extends BaseCase
                     'https://example.com',
                     'https://example.com/blog'
                 ],
+                "command" => "screenshot",
                 'params' => [
                     'ads' => true,
                     'remove_modals' => true

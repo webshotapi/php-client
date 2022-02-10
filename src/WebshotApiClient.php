@@ -2,9 +2,14 @@
 
 namespace Webshotapi\Client;
 
+use Gawsoft\RestApiClientFramework\Interfaces\ClientInterface;
 use Webshotapi\Client\Factories\FileTypeFactory;
+use Gawsoft\RestApiClientFramework\Base;
+use Gawsoft\RestApiClientFramework\Response;
+use Gawsoft\RestApiClientFramework\ProjectUrl;
+use Gawsoft\RestApiClientFramework\Project;
 
-class WebshotApiClient {
+class WebshotApiClient implements ClientInterface {
 
     private $api_key;
     private $endpoint;

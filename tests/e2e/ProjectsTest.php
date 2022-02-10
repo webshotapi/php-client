@@ -2,6 +2,7 @@
 
 namespace Webshotapi\Client\Tests;
 
+use Gawsoft\RestApiClientFramework\Exceptions\ClientException;
 use Webshotapi\Client\WebshotApiClient;
 use Webshotapi\Client\Exceptions\WebshotApiClientException;
 
@@ -77,7 +78,7 @@ class ProjectsTest extends BaseCase
 
         $this->assertEquals(200, $resp->statusCode());
 
-        $this->expectException(WebshotApiClientException::class);
+        $this->expectException(ClientException::class);
         $resp = $client->projects()->get($projects->projects[0]->id);
 
     }

@@ -29,7 +29,7 @@ class BaseCase extends TestCase
         return $resp->json()->projects;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
