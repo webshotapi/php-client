@@ -1,41 +1,6 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\Webshotapi\\Client\\Base",
-            "name": "Base",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#method___construct"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003Adownload\u0028\u0029",
-            "name": "download",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#method_download"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003AsetHeaders\u0028\u0029",
-            "name": "setHeaders",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#method_setHeaders"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003Amethod\u0028\u0029",
-            "name": "method",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#method_method"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003A\u0024client",
-            "name": "client",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#property_client"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Base\u003A\u003A\u0024headers",
-            "name": "headers",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Base.html#property_headers"
-        },                {
             "fqsen": "\\Webshotapi\\Client\\Exceptions\\WebshotApiClientException",
             "name": "WebshotApiClientException",
             "summary": "",
@@ -60,121 +25,6 @@ Search.appendIndex(
             "name": "getMime",
             "summary": "",
             "url": "classes/Webshotapi-Client-Interfaces-FileTypeInterface.html#method_getMime"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project",
-            "name": "Project",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Project.html"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project\u003A\u003Acreate\u0028\u0029",
-            "name": "create",
-            "summary": "Create\u0020new\u0020Project.\u0020You\u0020don\u0027t\u0020have\u0020to\u0020send\u0020request\u0020to\u0020our\u0020api.\u0020Simple\u0020send\u0020urls\u0020list\u0020to\u0020process",
-            "url": "classes/Webshotapi-Client-Project.html#method_create"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project\u003A\u003Aupdate\u0028\u0029",
-            "name": "update",
-            "summary": "Change\u0020project\u0020name\u0020and\u0020status",
-            "url": "classes/Webshotapi-Client-Project.html#method_update"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "List\u0020all\u0020projects\u0020grouped\u0020by\u0020page",
-            "url": "classes/Webshotapi-Client-Project.html#method_list"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project\u003A\u003Aget\u0028\u0029",
-            "name": "get",
-            "summary": "Get\u0020project\u0020data\u0020with\u0020stats",
-            "url": "classes/Webshotapi-Client-Project.html#method_get"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Project\u003A\u003Aremove\u0028\u0029",
-            "name": "remove",
-            "summary": "Delete\u0020project",
-            "url": "classes/Webshotapi-Client-Project.html#method_remove"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl",
-            "name": "ProjectUrl",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003Acreate\u0028\u0029",
-            "name": "create",
-            "summary": "Add\u0020new\u0020urls\u0020to\u0020project\u0020for\u0020process",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_create"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "List\u0020all\u0020projects\u0020urls\u0020with\u0020link\u0020to\u0020completed\u0020output\u0020file",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_list"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003Aget\u0028\u0029",
-            "name": "get",
-            "summary": "Get\u0020info\u0020about\u0020link\u0020for\u0020project_url_id",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_get"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003Aremove\u0028\u0029",
-            "name": "remove",
-            "summary": "Remove\u0020url\u0020from\u0020projects\u0020queue\u0020list",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_remove"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003AprocessAgain\u0028\u0029",
-            "name": "processAgain",
-            "summary": "If\u0020you\u0020want\u0020you\u0020can\u0020process\u0020this\u0020link\u0020again",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_processAgain"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\ProjectUrl\u003A\u003AdownloadUrl\u0028\u0029",
-            "name": "downloadUrl",
-            "summary": "Download\u0020specific\u0020url\u0020to\u0020file",
-            "url": "classes/Webshotapi-Client-ProjectUrl.html#method_downloadUrl"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response",
-            "name": "Response",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method___construct"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003AcontentEncoding\u0028\u0029",
-            "name": "contentEncoding",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_contentEncoding"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003Ajson\u0028\u0029",
-            "name": "json",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_json"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003Abody\u0028\u0029",
-            "name": "body",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_body"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003AcontentType\u0028\u0029",
-            "name": "contentType",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_contentType"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003AstatusCode\u0028\u0029",
-            "name": "statusCode",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_statusCode"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003AgetHeaders\u0028\u0029",
-            "name": "getHeaders",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_getHeaders"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003Asave\u0028\u0029",
-            "name": "save",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#method_save"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\Response\u003A\u003A\u0024response",
-            "name": "response",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-Response.html#property_response"
         },                {
             "fqsen": "\\Webshotapi\\Client\\Types\\Jpg",
             "name": "Jpg",
@@ -231,6 +81,11 @@ Search.appendIndex(
             "summary": "Create\u0020pdf\u0020of\u0020specific\u0020url",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_pdf"
         },                {
+            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Adownload\u0028\u0029",
+            "name": "download",
+            "summary": "Download\u0020link\u0020to\u0020file",
+            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_download"
+        },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Ascreenshot\u0028\u0029",
             "name": "screenshot",
             "summary": "Create\u0020screenshot\u0020for\u0020specific\u0020url\u0020and\u0020params\nIf\u0020you\u0020want\u0020to\u0020create\u0020png\u0020format\u0020call\u0020\u0024client\u002D\u003Escreenshot\u0028\u0027https\u003A\/\/example.com\u0027,\u005B\u005D,\u0027image\u0027,\u0027png\u0027\u0029\u003B",
@@ -273,12 +128,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Aprojects\u0028\u0029",
             "name": "projects",
-            "summary": "",
+            "summary": "CRUD\u0020methods\u0020for\u0020projects\u0020rest\u0020api",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_projects"
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003AprojectsUrl\u0028\u0029",
             "name": "projectsUrl",
-            "summary": "",
+            "summary": "CRUD\u0020methods\u0020for\u0020projects\u0020url\u0020rest\u0020api",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_projectsUrl"
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003A\u0024api_key",
@@ -301,16 +156,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/default.html"
         },                {
-            "fqsen": "\\Webshotapi\\Client",
-            "name": "Client",
-            "summary": "",
-            "url": "namespaces/webshotapi-client.html"
-        },                {
-            "fqsen": "\\Webshotapi",
-            "name": "Webshotapi",
-            "summary": "",
-            "url": "namespaces/webshotapi.html"
-        },                {
             "fqsen": "\\Webshotapi\\Client\\Exceptions",
             "name": "Exceptions",
             "summary": "",
@@ -330,5 +175,15 @@ Search.appendIndex(
             "name": "Types",
             "summary": "",
             "url": "namespaces/webshotapi-client-types.html"
+        },                {
+            "fqsen": "\\Webshotapi\\Client",
+            "name": "Client",
+            "summary": "",
+            "url": "namespaces/webshotapi-client.html"
+        },                {
+            "fqsen": "\\Webshotapi",
+            "name": "Webshotapi",
+            "summary": "",
+            "url": "namespaces/webshotapi.html"
         }            ]
 );

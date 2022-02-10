@@ -3,6 +3,7 @@
 namespace Webshotapi\Client;
 
 use Gawsoft\RestApiClientFramework\Interfaces\ClientInterface;
+use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\Factories\FileTypeFactory;
 use Gawsoft\RestApiClientFramework\Base;
 use Gawsoft\RestApiClientFramework\Response;
@@ -36,6 +37,22 @@ class WebshotApiClient implements ClientInterface {
     }
 
     /**
+     * Download link to file
+     *
+     * @param string $url
+     * @param string $path
+     * @return Response
+     * @throws WebshotApiClientException
+     */
+    function download(string $url, string $path): Response {
+        try {
+            $base = new Base($this);
+            return $base->download($url, $path);
+        } catch (\Exception $err) {
+            throw new WebshotApiClientException($err);
+        }
+    }
+    /**
      * Create screenshot for specific url and params
      * If you want to create png format call $client->screenshot('https://example.com',[],'image','png');
      *
@@ -54,21 +71,25 @@ class WebshotApiClient implements ClientInterface {
         if(!in_array($file_type,['jpg','png','pdf','json']))
             throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png or pdf');
 
-        $data['link'] = $url;
-        $data['image_type'] = $file_type;
+        try {
+            $data['link'] = $url;
+            $data['image_type'] = $file_type;
 
-        $base = new Base($this);
-        $fileType = FileTypeFactory::factory($file_type);
+            $base = new Base($this);
+            $fileType = FileTypeFactory::factory($file_type);
 
-        $base->setHeaders([
-            'Accept' => $fileType->getMime()
-        ]);
+            $base->setHeaders([
+                'Accept' => $fileType->getMime()
+            ]);
 
-        return $base->method([
-            'path' => '/screenshot/' . $response_type,
-            'data' => $data,
-            'method' => 'POST'
-        ]);
+            return $base->method([
+                'path' => '/screenshot/' . $response_type,
+                'data' => $data,
+                'method' => 'POST'
+            ]);
+        } catch (ClientException $e){
+            throw new WebshotApiClientException($e);
+        }
     }
 
     /**
@@ -82,25 +103,26 @@ class WebshotApiClient implements ClientInterface {
      */
     function extract(string $url, array $data): Response{
 
-        $data['link'] = $url;
+        try {
+            $data['link'] = $url;
 
-        $base = new Base($this);
+            $base = new Base($this);
 
-        $fileType = FileTypeFactory::factory('json');
-        $base->setHeaders([
-            'Accept' => $fileType->getMime(),
-            'Accept-Encoding' => 'gzip'
-        ]);
+            $fileType = FileTypeFactory::factory('json');
+            $base->setHeaders([
+                'Accept' => $fileType->getMime(),
+                'Accept-Encoding' => 'gzip'
+            ]);
 
+            return $base->method([
+                'method' => 'POST',
+                'path' => '/extract',
+                'data' => $data,
 
-        return $base->method([
-            'method' => 'POST',
-            'path' => '/extract',
-            //'path' => 'https://httpbin.org/headers',
-            'data' => $data,
-           // 'method' => 'GET'
-
-        ]);
+            ]);
+        } catch (ClientException $e){
+            throw new WebshotApiClientException($e);
+        }
     }
 
     /**
@@ -110,11 +132,15 @@ class WebshotApiClient implements ClientInterface {
      * @throws Exceptions\WebshotApiClientException
      */
     function info(): Response{
-        $base = new Base($this);
-        return $base->method([
-            'path' => '/info',
-            'method' => 'GET'
-        ]);
+        try{
+            $base = new Base($this);
+            return $base->method([
+                'path' => '/info',
+                'method' => 'GET'
+            ]);
+        } catch (ClientException $e){
+            throw new WebshotApiClientException($e);
+        }
     }
 
     /**
@@ -146,10 +172,22 @@ class WebshotApiClient implements ClientInterface {
         return $this->endpoint;
     }
 
+    /**
+     * CRUD methods for projects rest api
+     *
+     * @return Project
+     * @throws Gawsoft\RestApiClientFramework\Exceptions\ClientException
+     */
     function projects(): Project{
         return new Project($this);
     }
 
+    /**
+     * CRUD methods for projects url rest api
+     *
+     * @return Project
+     * @throws Gawsoft\RestApiClientFramework\Exceptions\ClientException
+     */
     function projectsUrl(): ProjectUrl{
         return new ProjectUrl($this);
     }

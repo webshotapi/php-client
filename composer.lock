@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "gawsoft/rest-api-client-framework",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gawsoftpl/rest-api-client-framework-php.git",
-                "reference": "212850e0132afdb563a0d0f3b59542be8170e1e3"
+                "reference": "f973f51a5e10712a128580e5a395b14c59d19434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/212850e0132afdb563a0d0f3b59542be8170e1e3",
-                "reference": "212850e0132afdb563a0d0f3b59542be8170e1e3",
+                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/f973f51a5e10712a128580e5a395b14c59d19434",
+                "reference": "f973f51a5e10712a128580e5a395b14c59d19434",
                 "shasum": ""
             },
             "require": {
@@ -42,9 +42,9 @@
             "homepage": "https://gawsoft.pl",
             "support": {
                 "issues": "https://github.com/gawsoftpl/rest-api-client-framework-php/issues",
-                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.0"
+                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.1"
             },
-            "time": "2022-02-10T11:47:23+00:00"
+            "time": "2022-02-10T12:21:09+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

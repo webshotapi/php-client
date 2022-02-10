@@ -2,6 +2,7 @@
 
 namespace Webshotapi\Client\Tests;
 
+use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\WebshotApiClient;
 
 class ScreenshotTest extends BaseCase
@@ -32,6 +33,16 @@ class ScreenshotTest extends BaseCase
 
         $this->assertFileExists($path);
         $this->assertGreaterThanOrEqual(1, $result);
+    }
+
+    function test_should_catch_exception(){
+        $client = new WebshotApiClient($this->getApiKey());
+        $this->expectException(WebshotApiClientException::class);
+        $resp = $client->download(
+            'https://example.com/sdfsfsd/fdsafsa',
+            '/tmp/aaa.jpg'
+        );
+
     }
 
     function test_take_screenshot_pdf(){
