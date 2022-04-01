@@ -2,6 +2,7 @@
 
 namespace Webshotapi\Client;
 
+
 use Gawsoft\RestApiClientFramework\Interfaces\ClientInterface;
 use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\Factories\FileTypeFactory;
