@@ -22,7 +22,7 @@ class WebshotApiClient implements ClientInterface {
      */
     function __construct(string $api_key){
         $this->api_key = $api_key;
-        $this->endpoint = getenv('WEBSHOTAPI_ENV') == 'dev' ? env('WEBSHOTAPI_ENDPOINT','http://localhost:3000') : 'https://api.webshotapi.com/v1';
+        $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT')  ? getenv('WEBSHOTAPI_ENDPOINT') :  'https://api.webshotapi.com/v1';
     }
 
     /**
