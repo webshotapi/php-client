@@ -22,7 +22,7 @@ class WebshotApiClient implements ClientInterface {
      */
     function __construct(string $api_key){
         $this->api_key = $api_key;
-        $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT')  ? getenv('WEBSHOTAPI_ENDPOINT') :  'https://api.webshotapi.com/v1';
+        $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT')  ? getenv('WEBSHOTAPI_ENDPOINT') :  'https://api.webshotapi.com/v1/';
     }
 
     /**
@@ -84,7 +84,7 @@ class WebshotApiClient implements ClientInterface {
             ]);
 
             return $base->method([
-                'path' => '/screenshot/' . $response_type,
+                'path' => 'screenshot/' . $response_type,
                 'data' => $data,
                 'method' => 'POST'
             ]);
@@ -117,7 +117,7 @@ class WebshotApiClient implements ClientInterface {
 
             return $base->method([
                 'method' => 'POST',
-                'path' => '/extract',
+                'path' => 'extract',
                 'data' => $data,
 
             ]);
@@ -136,7 +136,7 @@ class WebshotApiClient implements ClientInterface {
         try{
             $base = new Base($this);
             return $base->method([
-                'path' => '/info',
+                'path' => 'info',
                 'method' => 'GET'
             ]);
         } catch (ClientException $e){
