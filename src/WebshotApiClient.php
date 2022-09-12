@@ -49,8 +49,8 @@ class WebshotApiClient implements ClientInterface {
         try {
             $base = new Base($this);
             return $base->download($url, $path);
-        } catch (\Exception $err) {
-            throw new WebshotApiClientException($err);
+        } catch (\Exception $e) {
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
         }
     }
     /**
@@ -89,7 +89,7 @@ class WebshotApiClient implements ClientInterface {
                 'method' => 'POST'
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e);
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
         }
     }
 
@@ -122,7 +122,7 @@ class WebshotApiClient implements ClientInterface {
 
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e);
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
         }
     }
 
@@ -140,7 +140,7 @@ class WebshotApiClient implements ClientInterface {
                 'method' => 'GET'
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e);
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
         }
     }
 
@@ -180,7 +180,7 @@ class WebshotApiClient implements ClientInterface {
      * @throws Gawsoft\RestApiClientFramework\Exceptions\ClientException
      */
     function projects(): Project{
-        return new Project($this);
+       return new Project($this);
     }
 
     /**
