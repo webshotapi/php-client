@@ -50,7 +50,7 @@ class WebshotApiClient implements ClientInterface {
             $base = new Base($this);
             return $base->download($url, $path);
         } catch (\Exception $e) {
-            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
     /**
@@ -89,7 +89,7 @@ class WebshotApiClient implements ClientInterface {
                 'method' => 'POST'
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
@@ -122,7 +122,7 @@ class WebshotApiClient implements ClientInterface {
 
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
@@ -140,7 +140,7 @@ class WebshotApiClient implements ClientInterface {
                 'method' => 'GET'
             ]);
         } catch (ClientException $e){
-            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e->getFile());
+            throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
