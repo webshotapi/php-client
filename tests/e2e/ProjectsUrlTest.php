@@ -7,6 +7,15 @@ use Webshotapi\Client\WebshotApiClient;
 class ProjectsUrlTest extends BaseCase
 {
 
+    public function setUp(): void{
+        // Create test project
+        $client = new WebshotApiClient($this->getApiKey());
+        $resp = $client->projects()->create([
+            'name' => 'hello',
+            'status' => 'active'
+        ]);
+    }
+
     function test_create_project_url(){
         $testProjects = $this->getTestProjects();
 
@@ -79,9 +88,9 @@ class ProjectsUrlTest extends BaseCase
     function test_download_url(){
         $client = new WebshotApiClient($this->getApiKey());
         $path = '/tmp/save.pdf';
-        $res = $client->projectsUrl()->downloadUrl('https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf', $path);
+        $res = $client->projectsUrl()->downloadUrl('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', $path);
         $this->assertSame(200, $res->statusCode());
-        $this->assertGreaterThanOrEqual(10240, filesize($path));
+        $this->assertGreaterThanOrEqual(13264, filesize($path));
         $this->assertTrue(file_exists($path));
     }
 
