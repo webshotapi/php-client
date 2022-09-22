@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e56a6d1c5450051e4db09c79ccfe46ee",
+    "content-hash": "8cf92591eacc159c5368af1c8c9fdfae",
     "packages": [
         {
             "name": "gawsoft/rest-api-client-framework",
-            "version": "v1.0.2",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gawsoftpl/rest-api-client-framework-php.git",
-                "reference": "7180c59c5243f84b0b1bbae36fc1135f156fbb28"
+                "reference": "e92e3ab27138a2783efc546ae94a67f218124dac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/7180c59c5243f84b0b1bbae36fc1135f156fbb28",
-                "reference": "7180c59c5243f84b0b1bbae36fc1135f156fbb28",
+                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/e92e3ab27138a2783efc546ae94a67f218124dac",
+                "reference": "e92e3ab27138a2783efc546ae94a67f218124dac",
                 "shasum": ""
             },
             "require": {
@@ -42,9 +42,9 @@
             "homepage": "https://gawsoft.pl",
             "support": {
                 "issues": "https://github.com/gawsoftpl/rest-api-client-framework-php/issues",
-                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.2"
+                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.5"
             },
-            "time": "2022-09-12T20:08:48+00:00"
+            "time": "2022-09-22T11:21:40+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1531,16 +1531,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "4.0.6",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "55f4261989e546dc112258c7a75935a81a7ce382"
+                "reference": "fa0f136dd2334583309d32b62544682ee972b51a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/55f4261989e546dc112258c7a75935a81a7ce382",
-                "reference": "55f4261989e546dc112258c7a75935a81a7ce382",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/fa0f136dd2334583309d32b62544682ee972b51a",
+                "reference": "fa0f136dd2334583309d32b62544682ee972b51a",
                 "shasum": ""
             },
             "require": {
@@ -1593,7 +1593,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/4.0.6"
+                "source": "https://github.com/sebastianbergmann/comparator/tree/4.0.8"
             },
             "funding": [
                 {
@@ -1601,7 +1601,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-26T15:49:45+00:00"
+            "time": "2022-09-14T12:41:17+00:00"
         },
         {
             "name": "sebastian/complexity",
@@ -1791,16 +1791,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "4.0.4",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9"
+                "reference": "ac230ed27f0f98f597c8a2b6eb7ac563af5e5b9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/65e8b7db476c5dd267e65eea9cab77584d3cfff9",
-                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/ac230ed27f0f98f597c8a2b6eb7ac563af5e5b9d",
+                "reference": "ac230ed27f0f98f597c8a2b6eb7ac563af5e5b9d",
                 "shasum": ""
             },
             "require": {
@@ -1856,7 +1856,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.4"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.5"
             },
             "funding": [
                 {
@@ -1864,7 +1864,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-11T14:18:36+00:00"
+            "time": "2022-09-14T06:03:37+00:00"
         },
         {
             "name": "sebastian/global-state",

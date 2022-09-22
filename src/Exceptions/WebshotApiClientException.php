@@ -2,4 +2,6 @@
 
 namespace Webshotapi\Client\Exceptions;
 
-class WebshotApiClientException extends \Exception{}
+use Gawsoft\RestApiClientFramework\Exceptions\ClientException;
+
+class WebshotApiClientException extends ClientException{}

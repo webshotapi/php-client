@@ -30,7 +30,7 @@
         "doc:gen": "phpdoc -d ./src -t ./docs"
     },
     "require": {
-        "gawsoft/rest-api-client-framework": "^1.0.2"
+        "gawsoft/rest-api-client-framework": "^1.0.5"
     },
     "require-dev": {
         "phpunit/phpunit": ">=6"

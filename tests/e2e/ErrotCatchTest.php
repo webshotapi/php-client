@@ -10,7 +10,7 @@ class ErrotCatchTest extends BaseCase
     function test_take_extract()
     {
         try {
-            $client = new WebshotApiClient('abc');
+            $client = new WebshotApiClient('WRONG_API_KEY');
             $resp = $client->extract(
                 'https://example.com',
                 [
@@ -27,7 +27,13 @@ class ErrotCatchTest extends BaseCase
             $this->assertObjectHasAttribute('screenshot_url', $data);
             $this->assertObjectHasAttribute('html', $data);
         }catch(ClientException $e){
-            dd($e);
+            $resp = $e->getResponse();
+            $this->assertEquals(403,$resp->statusCode());
+            $this->assertEquals((object)[
+                "statusCode" => 403,
+                "message" => "Access denied",
+                "error" => "Forbidden"
+            ], $resp->json());
         }
 
     }
