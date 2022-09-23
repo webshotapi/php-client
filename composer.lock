@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cf92591eacc159c5368af1c8c9fdfae",
+    "content-hash": "9a3ffc6a5ce1116f4c499e4bbd3b1db7",
     "packages": [
         {
             "name": "gawsoft/rest-api-client-framework",
-            "version": "v1.0.5",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gawsoftpl/rest-api-client-framework-php.git",
-                "reference": "e92e3ab27138a2783efc546ae94a67f218124dac"
+                "reference": "f1e3fe6a7074a5179cc6bd3f764d812dd2fb4e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/e92e3ab27138a2783efc546ae94a67f218124dac",
-                "reference": "e92e3ab27138a2783efc546ae94a67f218124dac",
+                "url": "https://api.github.com/repos/gawsoftpl/rest-api-client-framework-php/zipball/f1e3fe6a7074a5179cc6bd3f764d812dd2fb4e64",
+                "reference": "f1e3fe6a7074a5179cc6bd3f764d812dd2fb4e64",
                 "shasum": ""
             },
             "require": {
@@ -42,9 +42,9 @@
             "homepage": "https://gawsoft.pl",
             "support": {
                 "issues": "https://github.com/gawsoftpl/rest-api-client-framework-php/issues",
-                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.5"
+                "source": "https://github.com/gawsoftpl/rest-api-client-framework-php/tree/v1.0.7"
             },
-            "time": "2022-09-22T11:21:40+00:00"
+            "time": "2022-09-23T21:32:47+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
