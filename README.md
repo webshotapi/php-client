@@ -3,15 +3,21 @@
 Capture screenshots and save images in various formats such as JPG, PNG, and PDF effortlessly. Additionally, leverage the capability to extract selectors for every HTML element, complete with coordinates and CSS styles post-browser rendering. 
 Utilize our API to initiate a project and enqueue all your URLs seamlessly. Our server is equipped to handle all the necessary tasks, streamlining the process for your convenience.
 
-**Use unique AI algorithm to remove cookies popup before take sceenshot**
-
-Full documentation about our api you can find in this website [Website screenshot API DOCS](https://webshotapi.com/docs/)
-
-## Installation
+# Installation
 
 ```bash
 composer require webshotapi/client
 ```
+
+# Remove cookies popup before take sceenshot
+![Remove cookies popup before take screenshot](images/remove-cookies-before-take-screenshot.png)
+Utilize an innovative AI algorithm to seamlessly eliminate the obstructive cookies popup before capturing a screenshot.
+[Read more](http://webshotapi.com/blog/remove-cookies-before-take-screenshot/)
+
+# Docs
+Full documentation about our api you can find in this website [Website screenshot API DOCS](https://webshotapi.com/docs/)
+
+
 
 
 ## API KEY
@@ -37,25 +43,16 @@ $URL = 'PUT_LINK_TO_WEBSITE_HERE';
 $SAVE_PATH = '/tmp/save2.jpg';
 
 $params = array(
-    'remove_modals' => '1', // Remove cookies popups before take screenshot
+    'remove_modals' => true, // Remove cookies popups before take screenshot
     'premium_proxy' => true, // use premium proxy 
     'geotargeting' => 'us', // use ip from USA
-    'ads' => '1',
+    'no_cache' => true, // Do not return result files from cache
+    'ads' => '1', // Remove ads
     'width' => '1280',
     'height' => '2040',
-    'no_cache' => '1',
-    'scroll_to_bottom' => '0',
-    'wait_for_selector' => '',
-    'wait_for_xpath' => '',
     'image_quality' => 75,
     'transparent_background' => false,
-    'user_agent' => '',
-    'accept_language' => '',
     'full_page' => true,
-    'timezone' => '',
-    'fail_statuscode' => '',
-    'capture_element_selector' => '',
-    'thumbnail_width' => 320,
 );
 
 $webshotapi = new WebshotApiClient($API_KEY);
@@ -90,8 +87,6 @@ $URL = 'PUT_LINK_TO_WEBSITE_HERE';
 $SAVE_PATH = '/tmp/save2.pdf';
 
 $params = array(
-    'remove_modals' => '1',
-    'ads' => '1',
     'width' => '1280',
     'height' => '2040',
     'no_cache' => '1',
@@ -106,7 +101,6 @@ $params = array(
     'timezone' => '',
     'fail_statuscode' => '',
     'capture_element_selector' => '',
-    'thumbnail_width' => 320,
 );
 
 $webshotapi = new WebshotApiClient($API_KEY);
@@ -117,8 +111,8 @@ $response->save($SAVE_PATH);
 
 
 } catch (WebshotApiClientException $e){
-echo"ERROR: ";
-echo $e->getMessage();
+    echo"ERROR: ";
+    echo $e->getMessage();
 }
 ```
 
