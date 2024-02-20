@@ -1,7 +1,9 @@
 # WebShotApi.com API client for PHP
 
-Take screenshot and save image in JPG, PNG, PDF. You can also extract selectors for all HTML elements with coordinates and css styles after browser rendering.
-In our api you can create project and send all you urls to queue. Our server will do all the work for you
+Capture screenshots and save images in various formats such as JPG, PNG, and PDF effortlessly. Additionally, leverage the capability to extract selectors for every HTML element, complete with coordinates and CSS styles post-browser rendering. 
+Utilize our API to initiate a project and enqueue all your URLs seamlessly. Our server is equipped to handle all the necessary tasks, streamlining the process for your convenience.
+
+**Use unique AI algorithm to remove cookies popup before take sceenshot**
 
 Full documentation about our api you can find in this website [Website screenshot API DOCS](https://webshotapi.com/docs/)
 
@@ -35,7 +37,9 @@ $URL = 'PUT_LINK_TO_WEBSITE_HERE';
 $SAVE_PATH = '/tmp/save2.jpg';
 
 $params = array(
-    'remove_modals' => '1',
+    'remove_modals' => '1', // Remove cookies popups before take screenshot
+    'premium_proxy' => true, // use premium proxy 
+    'geotargeting' => 'us', // use ip from USA
     'ads' => '1',
     'width' => '1280',
     'height' => '2040',

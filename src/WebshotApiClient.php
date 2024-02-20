@@ -75,7 +75,7 @@ class WebshotApiClient implements ClientInterface {
             throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png or pdf');
 
         try {
-            $data['link'] = $url;
+            $data['url'] = $url;
             $data['image_type'] = $file_type;
 
             $base = new Base($this);
@@ -107,7 +107,7 @@ class WebshotApiClient implements ClientInterface {
     function extract(string $url, array $data): ResponseInterface{
 
         try {
-            $data['link'] = $url;
+            $data['url'] = $url;
 
             $base = new Base($this);
 

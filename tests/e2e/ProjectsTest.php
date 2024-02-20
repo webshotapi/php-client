@@ -34,7 +34,6 @@ class ProjectsTest extends BaseCase
 
     function test_update_project(){
         $client = new WebshotApiClient($this->getApiKey());
-
         $resp = $client->projects()->list(1);
         $projects = $resp->json();
 
@@ -73,13 +72,12 @@ class ProjectsTest extends BaseCase
 
         $resp = $client->projects()->list(1);
         $projects = $resp->json();
-
         $resp = $client->projects()->remove($projects->projects[0]->id);
 
         $this->assertEquals(200, $resp->statusCode());
-
-        $this->expectException(ClientException::class);
+        $this->assertEquals(true, $resp->json()->deleted);
         $resp = $client->projects()->get($projects->projects[0]->id);
+        $this->assertEquals('to_delete', $resp->json()->status);
 
     }
 
