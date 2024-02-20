@@ -11,6 +11,7 @@ composer require webshotapi/client
 
 # Remove cookies popup before take sceenshot
 ![Remove cookies popup before take screenshot](images/remove-cookies-before-take-screenshot.png)
+
 Utilize an innovative AI algorithm to seamlessly eliminate the obstructive cookies popup before capturing a screenshot.
 [Read more](http://webshotapi.com/blog/remove-cookies-before-take-screenshot/)
 
