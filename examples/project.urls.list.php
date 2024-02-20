@@ -24,6 +24,7 @@ try{
                 "https://example.com",
                 "https://example.com/test"
             ],
+            "command" => "screenshot",
             "params" => [
                 "image_type" => "png",
                 "remove_modals" => true,

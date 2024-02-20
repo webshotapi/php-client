@@ -27,7 +27,7 @@
     ],
     "scripts": {
         "test": "./vendor/bin/phpunit -c phpunit.dist.xml",
-        "doc:gen": "phpdoc -d ./src -t ./docs"
+        "doc:gen": "docker run --user $(id -u):$(id -g) --rm -v \"$(pwd):/data\" \"phpdoc/phpdoc:3\" -d src -t ./docs"
     },
     "require": {
         "gawsoft/rest-api-client-framework": "^1.0.7"
