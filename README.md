@@ -218,8 +218,5 @@ echo $e->getMessage();
 ## API docs
 Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
 
-## About our service
-
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
