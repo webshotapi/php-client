@@ -19,6 +19,7 @@ class WebshotApiClient implements ClientInterface {
 
     /**
      * @param string $api_key
+     * @param string|null $endpoint
      */
     function __construct(string $api_key, string $endpoint = null){
         $this->api_key = $api_key;
@@ -56,16 +57,17 @@ class WebshotApiClient implements ClientInterface {
             throw new WebshotApiClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
+
     /**
-     * Create screenshot for specific url and params
-     * If you want to create png format call $client->screenshot('https://example.com',[],'image','png');
+     *  Create screenshot for specific url and params
+     *  If you want to create png format call $client->screenshot('https://example.com',[],'image','png');
      *
      * @param string $url
      * @param array $data
      * @param string $response_type
      * @param string $file_type
      * @return ResponseInterface
-     * @throws Exceptions\WebshotApiClientException
+     * @throws WebshotApiClientException
      */
     function screenshot(string $url, array $data, string $response_type='image', string $file_type='jpg'): ResponseInterface{
 
