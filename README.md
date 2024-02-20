@@ -23,7 +23,7 @@ Full documentation about our api you can find in this website [Website screensho
 
 ## API KEY
 Api key you can generate after register.
-[https://webshotapi.com/dashboard/api/](https://webshotapi.com/dashboard/api/)
+[https://dashboard.webshotapi.com/api_keys](https://dashboard.webshotapi.com/api_keys)
 
 ## Usage
 
