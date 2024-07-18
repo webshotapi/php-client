@@ -214,7 +214,8 @@ echo $e->getMessage();
 ```
 
 ## API docs
-Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
+Full documentation about our api you can find in this website http://webshotapi.com/docs/
+For php client docs: [API DOCS](https://webshotapi.com/docs/sdk/php)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
