@@ -10,7 +10,8 @@ try{
     $client = new WebshotApiClient($API_CLIENT);
     $response = $client->screenshot('https://example.com', [
         'width' => 1024,
-        'full_page' => true
+        'full_page' => true,
+        'remove_modals' => true, // Remove cookies popup
     ]);
 
     $response->save('/tmp/screenshot.jpg');

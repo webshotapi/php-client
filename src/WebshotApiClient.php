@@ -8,8 +8,6 @@ use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\Factories\FileTypeFactory;
 use Gawsoft\RestApiClientFramework\Base;
 use Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface;
-use Gawsoft\RestApiClientFramework\ProjectUrl;
-use Gawsoft\RestApiClientFramework\Project;
 
 class WebshotApiClient implements ClientInterface {
 
@@ -36,7 +34,7 @@ class WebshotApiClient implements ClientInterface {
      * @throws Exceptions\WebshotApiClientException
      */
     function pdf(string $url, array $data): ResponseInterface{
-        return $this->screenshot($url, $data, 'image', 'pdf');
+        return $this->screenshot($url, $data, 'pdf');
     }
 
     /**
@@ -64,15 +62,11 @@ class WebshotApiClient implements ClientInterface {
      *
      * @param string $url
      * @param array $data
-     * @param string $response_type
      * @param string $file_type
      * @return ResponseInterface
      * @throws WebshotApiClientException
      */
-    function screenshot(string $url, array $data, string $response_type='image', string $file_type='jpg'): ResponseInterface{
-
-        if(!in_array($response_type,['image','json']))
-            throw new WebshotApiClientException('Wrong response type accept only image or json');
+    function screenshot(string $url, array $data, string $file_type='jpg'): ResponseInterface{
 
         if(!in_array($file_type,['jpg','png','pdf','json']))
             throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png or pdf');
@@ -89,7 +83,7 @@ class WebshotApiClient implements ClientInterface {
             ]);
 
             return $base->method([
-                'path' => 'screenshot/' . $response_type,
+                'path' => 'screenshot/image',
                 'data' => $data,
                 'method' => 'POST'
             ]);
@@ -178,35 +172,7 @@ class WebshotApiClient implements ClientInterface {
         return $this->endpoint;
     }
 
-    /**
-     * CRUD methods for projects rest api
-     *
-     * @return Project
-     * @throws Exceptions\WebshotApiClientException
-     */
-    function projects(): Project{
-        try{
-            return new Project($this);
-        } catch (ClientException $e){
-            throw $this->exceptionHandle($e);
-        }
-    }
-
-    /**
-     * CRUD methods for projects url rest api
-     *
-     * @return Project
-     * @throws Exceptions\WebshotApiClientException
-     */
-    function projectsUrl(): ProjectUrl{
-        try{
-            return new ProjectUrl($this);
-        } catch (ClientException $e){
-            throw $this->exceptionHandle($e);
-        }
-    }
-
-    private function exceptionHandle(ClientException $exception): WebshotApiClientException{
+    protected function exceptionHandle(ClientException $exception): WebshotApiClientException{
         $psr_response = null;
         if($exception->hasResponse())
             $psr_response = $exception->getResponse()->psr7Response();

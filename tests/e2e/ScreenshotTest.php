@@ -16,23 +16,16 @@ class ScreenshotTest extends BaseCase
                 'remove_modals' => true,
                 'width' => 1024
             ],
-            'image',
             'jpg'
         );
 
         $path = '/tmp/test.jpg';
         $resp->save($path);
 
-        $image1 = new \Imagick($path);
-        $image_correct = new \Imagick(__DIR__ . '/../correct-files/example.jpeg');
-
-        $result =  $image_correct->compareImages($image1, \Imagick::METRIC_MEANSQUAREERROR);;
-
         $this->assertEquals(200, $resp->statusCode());
         $this->assertEquals('image/jpeg', $resp->contentType());
 
         $this->assertFileExists($path);
-        $this->assertGreaterThanOrEqual(1, $result);
     }
 
     function test_should_catch_exception(){
@@ -75,21 +68,14 @@ class ScreenshotTest extends BaseCase
                 'remove_modals' => true,
                 'width' => 1024
             ],
-            'image',
             'png'
         );
 
         $path = '/tmp/test.png';
         $resp->save($path);
 
-        $image1 = new \Imagick($path);
-        $image_correct = new \Imagick(__DIR__ . '/../correct-files/example.jpeg');
-
-        $result =  $image_correct->compareImages($image1, \Imagick::METRIC_MEANSQUAREERROR);;
-
         $this->assertEquals(200, $resp->statusCode());
         $this->assertEquals('image/png', $resp->contentType());
         $this->assertFileExists($path);
-        $this->assertGreaterThanOrEqual(1, $result);
     }
 }

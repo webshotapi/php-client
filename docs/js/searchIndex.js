@@ -126,21 +126,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_getEndpoint"
         },                {
-            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Aprojects\u0028\u0029",
-            "name": "projects",
-            "summary": "CRUD\u0020methods\u0020for\u0020projects\u0020rest\u0020api",
-            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_projects"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003AprojectsUrl\u0028\u0029",
-            "name": "projectsUrl",
-            "summary": "CRUD\u0020methods\u0020for\u0020projects\u0020url\u0020rest\u0020api",
-            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_projectsUrl"
-        },                {
-            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003AexceptionHandle\u0028\u0029",
-            "name": "exceptionHandle",
-            "summary": "",
-            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_exceptionHandle"
-        },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003A\u0024api_key",
             "name": "api_key",
             "summary": "",
