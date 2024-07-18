@@ -38,34 +38,33 @@ use Webshotapi\Client\Exceptions\WebshotApiClientException;
 
 try{
 
-$API_KEY = 'YOU_API_KEY';
-$URL = 'PUT_LINK_TO_WEBSITE_HERE';
-
-$SAVE_PATH = '/tmp/save2.jpg';
-
-$params = array(
-    'remove_modals' => true, // Remove cookies popups before take screenshot
-    'premium_proxy' => true, // use premium proxy 
-    'geotargeting' => 'us', // use ip from USA
-    'no_cache' => true, // Do not return result files from cache
-    'ads' => '1', // Remove ads
-    'width' => '1280',
-    'height' => '2040',
-    'image_quality' => 75,
-    'transparent_background' => false,
-    'full_page' => true,
-);
-
-$webshotapi = new WebshotApiClient($API_KEY);
-
-//Download, save jpg and send to browser
-$response = $webshotapi->screenshot($URL, $params);
-$response->save($SAVE_PATH);
-
+    $API_KEY = 'YOU_API_KEY';
+    $URL = 'PUT_LINK_TO_WEBSITE_HERE';
+    
+    $SAVE_PATH = '/tmp/save2.jpg';
+    
+    $params = array(
+        'remove_modals' => true, // Remove cookies popups before take screenshot
+        'premium_proxy' => true, // use premium proxy 
+        'geotargeting' => 'us', // use ip from USA
+        'no_cache' => true, // Do not return result files from cache
+        'ads' => '1', // Remove ads
+        'width' => '1280',
+        'height' => '2040',
+        'image_quality' => 75,
+        'transparent_background' => false,
+        'full_page' => true,
+    );
+    
+    $webshotapi = new WebshotApiClient($API_KEY);
+    
+    //Download, save jpg and send to browser
+    $response = $webshotapi->screenshot($URL, $params);
+    $response->save($SAVE_PATH);
 
 } catch (WebshotApiClientException $e){
-echo"ERROR: ";
-echo $e->getMessage();
+    echo"ERROR: ";
+    echo $e->getMessage();
 }
 ```
 
@@ -80,36 +79,35 @@ use Webshotapi\Client\WebshotApiClient;
 use Webshotapi\Client\Exceptions\WebshotApiClientException;
 
 try{
-
-$API_KEY = 'YOU_API_KEY';
-$URL = 'PUT_LINK_TO_WEBSITE_HERE';
-
-
-$SAVE_PATH = '/tmp/save2.pdf';
-
-$params = array(
-    'width' => '1280',
-    'height' => '2040',
-    'no_cache' => '1',
-    'scroll_to_bottom' => '0',
-    'wait_for_selector' => '',
-    'wait_for_xpath' => '',
-    'image_quality' => 75,
-    'transparent_background' => false,
-    'user_agent' => '',
-    'accept_language' => '',
-    'full_page' => true,
-    'timezone' => '',
-    'fail_statuscode' => '',
-    'capture_element_selector' => '',
-);
-
-$webshotapi = new WebshotApiClient($API_KEY);
-
-//Download, save jpg and send to browser
-$response = $webshotapi->pdf($URL, $params);
-$response->save($SAVE_PATH);
-
+    
+    $API_KEY = 'YOU_API_KEY';
+    $URL = 'PUT_LINK_TO_WEBSITE_HERE';
+    
+    $SAVE_PATH = '/tmp/save2.pdf';
+    
+    $params = array(
+        'width' => '1280',
+        'height' => '2040',
+        'no_cache' => '1',
+        'scroll_to_bottom' => '0',
+        'wait_for_selector' => '',
+        'wait_for_xpath' => '',
+        'image_quality' => 75,
+        'transparent_background' => false,
+        'user_agent' => '',
+        'accept_language' => '',
+        'full_page' => true,
+        'timezone' => '',
+        'fail_statuscode' => '',
+        'capture_element_selector' => '',
+    );
+    
+    $webshotapi = new WebshotApiClient($API_KEY);
+    
+    //Download, save jpg and send to browser
+    $response = $webshotapi->pdf($URL, $params);
+    $response->save($SAVE_PATH);
+    
 
 } catch (WebshotApiClientException $e){
     echo"ERROR: ";

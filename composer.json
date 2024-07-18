@@ -16,7 +16,7 @@
     "homepage": "https://webshotapi.com",
     "repositories": [{
         "type": "vcs",
-        "url": "https://github.com/webshotapi/webshotapi-website-screenshot-php-client"
+        "url": "https://github.com/webshotapi/php-client"
     }
     ],
     "authors": [
