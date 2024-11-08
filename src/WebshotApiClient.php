@@ -13,7 +13,7 @@ class WebshotApiClient implements ClientInterface {
 
     private $api_key;
     private $endpoint;
-    private $timeout = 30;
+    private $timeout = 50;
 
     /**
      * @param string $api_key
