@@ -66,6 +66,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Webshotapi-Client-Types-Png.html#method_getMime"
         },                {
+            "fqsen": "\\Webshotapi\\Client\\Types\\Webp",
+            "name": "Webp",
+            "summary": "",
+            "url": "classes/Webshotapi-Client-Types-Webp.html"
+        },                {
+            "fqsen": "\\Webshotapi\\Client\\Types\\Webp\u003A\u003AgetMime\u0028\u0029",
+            "name": "getMime",
+            "summary": "",
+            "url": "classes/Webshotapi-Client-Types-Webp.html#method_getMime"
+        },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient",
             "name": "WebshotApiClient",
             "summary": "",
@@ -88,8 +98,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Ascreenshot\u0028\u0029",
             "name": "screenshot",
-            "summary": "Create\u0020screenshot\u0020for\u0020specific\u0020url\u0020and\u0020params\n\u0020If\u0020you\u0020want\u0020to\u0020create\u0020png\u0020format\u0020call\u0020\u0024client\u002D\u003Escreenshot\u0028\u0027https\u003A\/\/example.com\u0027,\u005B\u005D,\u0027image\u0027,\u0027png\u0027\u0029\u003B",
+            "summary": "Create\u0020screenshot\u0020for\u0020specific\u0020url\u0020and\u0020params",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_screenshot"
+        },                {
+            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003AscreenshotJson\u0028\u0029",
+            "name": "screenshotJson",
+            "summary": "Create\u0020screenshot\u0020and\u0020return\u0020object\u0020with\u0020direct\u0020url\u0020to\u0020screenshot",
+            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_screenshotJson"
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003Aextract\u0028\u0029",
             "name": "extract",
@@ -125,6 +140,11 @@ Search.appendIndex(
             "name": "getEndpoint",
             "summary": "",
             "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_getEndpoint"
+        },                {
+            "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003AexceptionHandle\u0028\u0029",
+            "name": "exceptionHandle",
+            "summary": "",
+            "url": "classes/Webshotapi-Client-WebshotApiClient.html#method_exceptionHandle"
         },                {
             "fqsen": "\\Webshotapi\\Client\\WebshotApiClient\u003A\u003A\u0024api_key",
             "name": "api_key",

@@ -164,19 +164,19 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#property_api_key">$api_key</a>
     <span>
-                        &nbsp;: mixed            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#property_endpoint">$endpoint</a>
     <span>
-                        &nbsp;: mixed            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#property_timeout">$timeout</a>
     <span>
-                        &nbsp;: mixed            </span>
+                        &nbsp;: int            </span>
 </dt>
 
     </dl>
@@ -244,8 +244,14 @@
     <span>
                                 &nbsp;: <abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr>    </span>
 </dt>
-<dd>Create screenshot for specific url and params
- If you want to create png format call $client-&gt;screenshot(&#039;https://example.com&#039;,[],&#039;image&#039;,&#039;png&#039;);</dd>
+<dd>Create screenshot for specific url and params</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshotJson">screenshotJson()</a>
+    <span>
+                                &nbsp;: <abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr>    </span>
+</dt>
+<dd>Create screenshot and return object with direct url to screenshot</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#method_setEndpoint">setEndpoint()</a>
@@ -260,6 +266,12 @@
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Set connection timeout in seconds</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Webshotapi-Client-WebshotApiClient.html#method_exceptionHandle">exceptionHandle()</a>
+    <span>
+                                &nbsp;: <a href="classes/Webshotapi-Client-Exceptions-WebshotApiClientException.html"><abbr title="\Webshotapi\Client\Exceptions\WebshotApiClientException">WebshotApiClientException</abbr></a>    </span>
+</dt>
 
     </dl>
 
@@ -299,7 +311,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$api_key</span>
     </code>
 
@@ -335,7 +347,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$endpoint</span>
     </code>
 
@@ -371,9 +383,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$timeout</span>
-     = <span class="phpdocumentor-signature__default-value">30</span></code>
+     = <span class="phpdocumentor-signature__default-value">50</span></code>
 
     
     
@@ -455,7 +467,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -526,7 +538,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
@@ -606,7 +618,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
@@ -644,7 +656,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -682,7 +694,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -720,7 +732,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -782,7 +794,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">pdf</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">pdf</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -800,7 +812,7 @@
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$data</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -845,16 +857,101 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Create screenshot for specific url and params
- If you want to create png format call $client-&gt;screenshot(&#039;https://example.com&#039;,[],&#039;image&#039;,&#039;png&#039;);</p>
+        <p class="phpdocumentor-summary">Create screenshot for specific url and params</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">screenshot</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;image&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;jpg&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">screenshot</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$json_response</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$url</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><ul>
+<li>parameters to take screnshot from webshotapi.com/docs</li>
+</ul>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$json_response</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><ul>
+<li>return response as json</li>
+</ul>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshot#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Webshotapi-Client-Exceptions-WebshotApiClientException.html"><abbr title="\Webshotapi\Client\Exceptions\WebshotApiClientException">WebshotApiClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_screenshotJson">
+        screenshotJson()
+        <a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshotJson" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">111</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Create screenshot and return object with direct url to screenshot</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">screenshotJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface">ResponseInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -876,26 +973,12 @@
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$response_type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;image&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$file_type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;jpg&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
             </dl>
 
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshot#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshotJson#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -931,7 +1014,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">171</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -976,7 +1059,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">171</span>
 
     </aside>
 
@@ -1006,6 +1089,54 @@
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_exceptionHandle">
+        exceptionHandle()
+        <a href="classes/Webshotapi-Client-WebshotApiClient.html#method_exceptionHandle" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/WebshotApiClient.php"><a href="files/src-webshotapiclient.html"><abbr title="src/WebshotApiClient.php">WebshotApiClient.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">195</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">exceptionHandle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Gawsoft\RestApiClientFramework\Exceptions\ClientException">ClientException</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$exception</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Webshotapi-Client-Exceptions-WebshotApiClientException.html"><abbr title="\Webshotapi\Client\Exceptions\WebshotApiClientException">WebshotApiClientException</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$exception</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Gawsoft\RestApiClientFramework\Exceptions\ClientException">ClientException</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Webshotapi-Client-Exceptions-WebshotApiClientException.html"><abbr title="\Webshotapi\Client\Exceptions\WebshotApiClientException">WebshotApiClientException</abbr></a></span>
+            </section>
+
 </article>
             </section>
 
@@ -1120,9 +1251,9 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_api_key">$api_key</li>
-                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_endpoint">$endpoint</li>
-                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_timeout">$timeout</li>
+                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_api_key">$api_key</a></li>
+                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_endpoint">$endpoint</a></li>
+                                                    <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#property_timeout">$timeout</a></li>
                                             </ul>
                 </li>
             
@@ -1138,8 +1269,10 @@
                                             <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_info">info()</a></li>
                                             <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_pdf">pdf()</a></li>
                                             <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshot">screenshot()</a></li>
+                                            <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_screenshotJson">screenshotJson()</a></li>
                                             <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_setEndpoint">setEndpoint()</a></li>
                                             <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_setTimeout">setTimeout()</a></li>
+                                            <li class=""><a href="classes/Webshotapi-Client-WebshotApiClient.html#method_exceptionHandle">exceptionHandle()</a></li>
                                     </ul>
             </li>
                     </ul>

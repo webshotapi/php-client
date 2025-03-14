@@ -44,9 +44,10 @@ try{
     
     $params = array(
         'remove_modals' => true, // Remove cookies popups before take screenshot
-        'premium_proxy' => true, // use premium proxy 
+        //'image_format' => 'webp', // To generate webp image 
+        //'image_format' => 'pdf', // To generate pdf file 
+        'premium_proxy' => false, // use premium proxy 
         'geotargeting' => 'us', // use ip from USA
-        'no_cache' => true, // Do not return result files from cache
         'ads' => '1', // Remove ads
         'width' => '1280',
         'height' => '2040',
@@ -87,7 +88,6 @@ try{
     $params = array(
         'width' => '1280',
         'height' => '2040',
-        'no_cache' => '1',
         'scroll_to_bottom' => '0',
         'wait_for_selector' => '',
         'wait_for_xpath' => '',
@@ -135,7 +135,6 @@ $SAVE_PATH = '/tmp/save2.json';
 
 $params = array(
     [
-        'no_cache'=>1,
         'extract_selectors'=>1,
         'extract_words' => 1,
         'extract_style' => 1,//0 - skip styles, 1 - download most import css styles, 2 - download all styles for element
