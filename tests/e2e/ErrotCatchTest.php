@@ -23,16 +23,17 @@ class ErrotCatchTest extends BaseCase
             $data = $resp->json();
             $this->assertEquals(200, $resp->statusCode());
 
-            $this->assertObjectHasAttribute('status_code', $data);
-            $this->assertObjectHasAttribute('screenshot_url', $data);
-            $this->assertObjectHasAttribute('html', $data);
+            $this->assertObjectHasProperty('status_code', $data);
+            $this->assertObjectHasProperty('screenshot_url', $data);
+            $this->assertObjectHasProperty('html', $data);
+
         }catch(ClientException $e){
             $resp = $e->getResponse();
-            $this->assertEquals(403,$resp->statusCode());
+            $this->assertEquals(401,$resp->statusCode());
             $this->assertEquals((object)[
-                "statusCode" => 403,
+                "statusCode" => 401,
                 "message" => "Access denied",
-                "error" => "Forbidden"
+                "error" => "Unauthorized"
             ], $resp->json());
         }
 

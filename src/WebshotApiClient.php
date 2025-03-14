@@ -11,15 +11,15 @@ use Gawsoft\RestApiClientFramework\Interfaces\ResponseInterface;
 
 class WebshotApiClient implements ClientInterface {
 
-    private $api_key;
-    private $endpoint;
-    private $timeout = 50;
+    private string $api_key;
+    private string $endpoint;
+    private int $timeout = 50;
 
     /**
      * @param string $api_key
      * @param string|null $endpoint
      */
-    function __construct(string $api_key, string $endpoint = null){
+    function __construct(string $api_key, string | null $endpoint = null){
         $this->api_key = $api_key;
         if ($endpoint) $this->endpoint = $endpoint;
         else $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT')  ? getenv('WEBSHOTAPI_ENDPOINT') :  'https://api.webshotapi.com/v1/';
@@ -33,8 +33,11 @@ class WebshotApiClient implements ClientInterface {
      * @return ResponseInterface
      * @throws Exceptions\WebshotApiClientException
      */
-    function pdf(string $url, array $data): ResponseInterface{
-        return $this->screenshot($url, $data, 'pdf');
+    function pdf(string $url, array $data = []): ResponseInterface{
+        return $this->screenshot($url, [
+            ...$data,
+            'image_type' => 'pdf'
+        ]);
     }
 
     /**
@@ -58,38 +61,55 @@ class WebshotApiClient implements ClientInterface {
 
     /**
      *  Create screenshot for specific url and params
-     *  If you want to create png format call $client->screenshot('https://example.com',[],'image','png');
      *
      * @param string $url
-     * @param array $data
-     * @param string $file_type
+     * @param array $data - parameters to take screnshot from webshotapi.com/docs
+     * @param bool $json_response - return response as json
      * @return ResponseInterface
      * @throws WebshotApiClientException
      */
-    function screenshot(string $url, array $data, string $file_type='jpg'): ResponseInterface{
-
-        if(!in_array($file_type,['jpg','png','pdf','json']))
-            throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png or pdf');
+    function screenshot(string $url, array $data, bool $json_response = false): ResponseInterface{
 
         try {
             $data['url'] = $url;
-            $data['image_type'] = $file_type;
+
+            $image_type = "jpg";
+            if (isset($data['image_type'])){
+                if (!in_array($data['image_type'], ['jpg','png','pdf','webp']))
+                    throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png, webp or pdf');
+
+                $image_type = $data['image_type'];
+            }
 
             $base = new Base($this);
-            $fileType = FileTypeFactory::factory($file_type);
+            $fileType = $json_response
+                ? FileTypeFactory::factory('json')
+                : FileTypeFactory::factory($image_type);
 
             $base->setHeaders([
                 'Accept' => $fileType->getMime()
             ]);
 
             return $base->method([
-                'path' => 'screenshot/image',
+                'path' => $json_response ? 'screenshot/json' : 'screenshot/image',
                 'data' => $data,
                 'method' => 'POST'
             ]);
         } catch (ClientException $e){
             throw $this->exceptionHandle($e);
         }
+    }
+
+    /**
+     *  Create screenshot and return object with direct url to screenshot
+     *
+     * @param string $url
+     * @param array $data
+     * @return ResponseInterface
+     * @throws WebshotApiClientException
+     */
+    function screenshotJson(string $url, array $data): ResponseInterface{
+        return $this->screenshot($url, $data, true);
     }
 
     /**

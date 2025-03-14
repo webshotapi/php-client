@@ -6,15 +6,16 @@ use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\WebshotApiClient;
 
 try{
+    // Paste your API key here
     $API_CLIENT = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
     $client = new WebshotApiClient($API_CLIENT);
     $response = $client->screenshot(
         'https://example.com',
         [
             'width' => 1024,
-            'full_page' => true
+            'full_page' => true,
+            'image_type' => 'png' // jpg, png, pdf, webp
         ],
-        'png'
     );
 
     $response->save('/tmp/screenshot.png');

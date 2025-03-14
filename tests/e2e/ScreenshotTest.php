@@ -15,8 +15,7 @@ class ScreenshotTest extends BaseCase
                 'ads' => true,
                 'remove_modals' => true,
                 'width' => 1024
-            ],
-            'jpg'
+            ]
         );
 
         $path = '/tmp/test.jpg';
@@ -66,9 +65,9 @@ class ScreenshotTest extends BaseCase
             [
                 'ads' => true,
                 'remove_modals' => true,
-                'width' => 1024
-            ],
-            'png'
+                'width' => 1024,
+                'image_type' => 'png'
+            ]
         );
 
         $path = '/tmp/test.png';
@@ -77,5 +76,42 @@ class ScreenshotTest extends BaseCase
         $this->assertEquals(200, $resp->statusCode());
         $this->assertEquals('image/png', $resp->contentType());
         $this->assertFileExists($path);
+    }
+
+    function test_take_screenshot_webp(){
+        $client = new WebshotApiClient($this->getApiKey());
+        $resp = $client->screenshot(
+            'https://example.com',
+            [
+                'ads' => true,
+                'remove_modals' => true,
+                'width' => 1024,
+                'image_type' => 'webp'
+            ]
+        );
+
+        $path = '/tmp/test.webp';
+        $resp->save($path);
+
+        $this->assertEquals(200, $resp->statusCode());
+        $this->assertEquals('image/webp', $resp->contentType());
+        $this->assertFileExists($path);
+    }
+
+    function test_take_screenshot_json(){
+        $client = new WebshotApiClient($this->getApiKey());
+        $resp = $client->screenshotJson(
+            'https://example.com',
+            [
+                'ads' => true,
+                'remove_modals' => true,
+                'width' => 1024,
+                'image_type' => 'webp'
+            ]
+        );
+
+        $this->assertEquals(200, $resp->statusCode());
+        $this->assertEquals('application/json; charset=utf-8', $resp->contentType());
+
     }
 }

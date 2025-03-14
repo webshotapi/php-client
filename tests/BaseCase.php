@@ -9,13 +9,13 @@ class BaseCase extends TestCase
 {
     private $api_key;
 
-    function __construct(string $name = null, array $data = [], $dataName = '')
+    protected function setUp(): void
     {
+        parent::setUp();
         if (!getenv('WEBSHOTAPI_TEST_API_KEY')) {
             throw new \Exception('No set api key for E2E test');
         }
 
-        parent::__construct($name, $data, $dataName);
         $this->api_key = getenv('WEBSHOTAPI_TEST_API_KEY');
     }
 
@@ -29,9 +29,5 @@ class BaseCase extends TestCase
         return $resp->json()->projects;
     }
 
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
 
 }

@@ -1,4 +1,4 @@
-FROM php:7.0-cli
+FROM php:8.0-cli
 
 RUN echo 'deb http://archive.debian.org/debian/ jessie main non-free contrib\ndeb-src http://archive.debian.org/debian/ jessie main non-free contrib' > /etc/apt/sources.list.d/archive.list
 RUN apt update

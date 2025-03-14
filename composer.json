@@ -30,7 +30,8 @@
         "doc:gen": "docker run --user $(id -u):$(id -g) --rm -v \"$(pwd):/data\" \"phpdoc/phpdoc:3\" -d src -t ./docs"
     },
     "require": {
-        "gawsoft/rest-api-client-framework": "^1.0.7"
+        "php": ">=8.0",
+        "gawsoft/rest-api-client-framework": "^1.0.9"
     },
     "require-dev": {
         "phpunit/phpunit": ">=6"

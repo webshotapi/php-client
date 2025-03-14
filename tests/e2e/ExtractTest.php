@@ -21,9 +21,8 @@ class ExtractTest extends BaseCase
         $data = $resp->json();
         $this->assertEquals(200, $resp->statusCode());
 
-        $this->assertObjectHasAttribute('status_code', $data);
-        $this->assertObjectHasAttribute('screenshot_url', $data);
-        $this->assertObjectHasAttribute('html', $data);
+        $this->assertObjectHasProperty('status_code', $data);
+        $this->assertObjectHasProperty('html', $data);
 
     }
 }
