@@ -51,9 +51,9 @@ jobs:
         run: |
           RELEASE_BODY=$(cat release_notes.txt)
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          echo "$RELEASE_BODY" >> $GITHUB_ENV
+          echo -e "$RELEASE_BODY" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-          
+
       # Step 5: Create the release on GitHub
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
