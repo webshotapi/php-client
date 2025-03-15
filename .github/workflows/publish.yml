@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Ensure full history is fetched
-          
+
       - name: Get Previous Tag
         id: prev_tag
         run: |
@@ -26,18 +26,27 @@ jobs:
       - name: Generate Release Notes
         id: release_notes
         run: |
-          REPO_URL="https://github.com/${{ github.repository }}/commit/"
+          REPO_URL="https://github.com/${{ github.repository }}"
+          RELEASE_BODY="## ✨ What's New in ${{ github.ref_name }}\n\n### 🔥 Changes\n"
+
           if [ -z "$PREV_TAG" ]; then
-            echo "RELEASE_BODY=First release 🚀" >> $GITHUB_ENV
+            RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first official release of this project!"
           else
-            echo $PREV_TAG
-            COMMIT_LOG=$(git log $PREV_TAG..HEAD --pretty=format:"- [%h](<$REPO_URL%H>) %s by @%an" --reverse)
-            echo $COMMIT_LOG
-            echo "Release Notes:"
-            echo "$COMMIT_LOG"
-            echo "RELEASE_BODY=## Changes\n\n$COMMIT_LOG" >> $GITHUB_ENV
+            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%H" --reverse)
+
+            for COMMIT in $COMMITS; do
+              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
+              AUTHOR=$(gh api repos/${{ github.repository }}/commits/$COMMIT --jq '.author.login' || echo "unknown")
+              RELEASE_BODY+=" - 🔹 [\`${COMMIT:0:7}\`]($REPO_URL/commit/$COMMIT) $MESSAGE by **[@$AUTHOR]($REPO_URL/commits?author=$AUTHOR)**\n"
+            done
+
+            RELEASE_BODY+="\n💡 _Full commit history [here]($REPO_URL/compare/$PREV_TAG...${{ github.ref_name }})_"
           fi
 
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo "$RELEASE_BODY" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
