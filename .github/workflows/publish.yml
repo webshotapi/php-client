@@ -38,11 +38,12 @@ jobs:
             for COMMIT in $COMMITS; do
               MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
               COMMIT_URL="$REPO_URL/commit/$COMMIT"
-              RELEASE_BODY+=" - 🔹 [$COMMIT]( $COMMIT_URL) $MESSAGE\n"
+              RELEASE_BODY+=" - 🔹 [$COMMIT]($COMMIT_URL) $MESSAGE\n"
             done
           fi
 
-          echo "$RELEASE_BODY" >> $GITHUB_ENV
+          # Save the release body to a file instead of the environment variable
+          echo "$RELEASE_BODY" > release_notes.txt
 
       # Step 4: Create the release on GitHub
       - name: Create GitHub Release
@@ -50,6 +51,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: "${{ env.RELEASE_BODY }}"
+          body: "$(cat release_notes.txt)"  # Use the contents of the file as the release body
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
