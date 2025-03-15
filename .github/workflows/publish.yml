@@ -13,7 +13,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0  # Ensure full history is fetched
+          
       - name: Get Previous Tag
         id: prev_tag
         run: |
