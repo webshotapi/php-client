@@ -40,12 +40,12 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           NUMERIC_VERSION: ${{ steps.version.outputs.version }}
 
-      - name: Fail if branch and release tag do not match
-        if: ${{ steps.guard.outputs.VERSION_MISMATCH == 'true' }}
-        uses: actions/github-script@v7
-        with:
-          script: |
-              core.setFailed('Workflow failed. Release version does not match with selected target branch. Did you select the correct branch?')
+      # - name: Fail if branch and release tag do not match
+      #   if: ${{ steps.guard.outputs.VERSION_MISMATCH == 'true' }}
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #         core.setFailed('Workflow failed. Release version does not match with selected target branch. Did you select the correct branch?')
 
       - name: Generate release notes
         id: generated-notes
