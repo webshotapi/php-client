@@ -34,19 +34,14 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first release of the project!"
           else
-            # Retrieve commit hashes, usernames, and commit messages
-            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%h %an: %s" --reverse)
+            # Retrieve the commit hashes as short hashes using --abbrev-commit
+            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%h" --reverse)
             for COMMIT in $COMMITS; do
-              SHORT_HASH=$(echo $COMMIT | cut -d' ' -f1)
-              AUTHOR=$(echo $COMMIT | cut -d' ' -f2)
-              MESSAGE=$(echo $COMMIT | cut -d' ' -f3-)
-              COMMIT_URL="$REPO_URL/commit/$SHORT_HASH"
-              RELEASE_BODY+=" - 🔹 [$SHORT_HASH]($COMMIT_URL) by @$AUTHOR: $MESSAGE\n"
+              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
+              COMMIT_URL="$REPO_URL/commit/$COMMIT"
+              RELEASE_BODY+=" - 🔹 [$COMMIT]($COMMIT_URL) $MESSAGE\n"
             done
           fi
-
-          # Save the release body to a file instead of the environment variable
-          echo "$RELEASE_BODY" > release_notes.txt
 
       # Step 4: Load release notes into an environment variable
       - name: Load release notes into variable
