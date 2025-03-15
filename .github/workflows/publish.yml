@@ -1,95 +1,54 @@
-name: Create GitHub Release
+name: Release Drafter
 
 on:
   push:
     tags:
       - 'v*'  # Triggers only when a tag like v1.0.0 is pushed
 
-jobs:
-  create-release:
-    name: Create GitHub Release
-    runs-on: ubuntu-latest
+  # pull_request event is required only for autolabeler
+  pull_request:
+    # Only following types are handled by the action, but one can default to all as well
+    types: [opened, reopened, synchronize]
+  # pull_request_target event is required for autolabeler to support PRs from forks
+  # pull_request_target:
+  #   types: [opened, reopened, synchronize]
 
+permissions:
+  contents: read
+
+jobs:
+  update_release_draft:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # write permission is required for autolabeler
+      # otherwise, read permission is required at least
+      pull-requests: write
+    runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Remove optional "v" prefix
-        id: version
-        run: |
-          echo "version=${VERSION#v}" >> "$GITHUB_OUTPUT"
-        env:
-          VERSION: ${{ inputs.version }}
-
-      - name: Check if branch and version match
-        id: guard
-        run: |
-          MAJOR_VERSION="${NUMERIC_VERSION%%.*}"
-          BRANCH_MAJOR_VERSION="${BRANCH%%.*}"
-
-          if [ "$MAJOR_VERSION" != "$BRANCH_MAJOR_VERSION" ]; then
-            echo "Mismatched versions! Aborting."
-            VERSION_MISMATCH='true';
-          else
-            echo "Versions match! Proceeding."
-            VERSION_MISMATCH='false';
-          fi
-
-          echo "VERSION_MISMATCH=$(echo $VERSION_MISMATCH)" >> "$GITHUB_OUTPUT";
-        env:
-          BRANCH: ${{ github.ref_name }}
-          NUMERIC_VERSION: ${{ steps.version.outputs.version }}
-
-      # - name: Fail if branch and release tag do not match
-      #   if: ${{ steps.guard.outputs.VERSION_MISMATCH == 'true' }}
-      #   uses: actions/github-script@v7
-      #   with:
-      #     script: |
-      #         core.setFailed('Workflow failed. Release version does not match with selected target branch. Did you select the correct branch?')
-
-      - name: Generate release notes
-        id: generated-notes
-        uses: RedCrafter07/release-notes-action@main
         with:
-          tag-name: v${{ steps.version.outputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
+          fetch-depth: 0  # Fetch full history to access all tags and commits
+      # (Optional) GitHub Enterprise requires GHE_HOST variable set
+      #- name: Set GHE_HOST
+      #  run: |
+      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
 
-      - name: Cleanup release notes
-        id: cleaned-notes
-        run: |
-          START_FROM=$(echo -n "$RELEASE_NOTES" | awk "/What's Changed/{ print NR; exit }" -)
-          DROP_FROM_CONTRIBUTORS=$(echo -n "$RELEASE_NOTES" | awk "/New Contributors/{ print NR; exit }" -)
-          DROP_FROM_FULL_CHANGELOG=$(echo -n "$RELEASE_NOTES" | awk "/Full Changelog/{ print NR; exit }" -)
-
-          # Drop everything starting from "Full Changelog"
-          if [ ! -z "$DROP_FROM_FULL_CHANGELOG" ]; then
-              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_FULL_CHANGELOG},$ d")
-          fi
-
-          # Drop everything starting from "New Contributors"
-          if [ ! -z "$DROP_FROM_CONTRIBUTORS" ]; then
-              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_CONTRIBUTORS},$ d")
-          fi
-
-          # Drop the line "What's Changed"
-          if [ ! -z "$START_FROM" ]; then
-              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${START_FROM}d")
-          fi
-
-          {
-            echo 'notes<<EOF'
-            echo "$RELEASE_NOTES"
-            echo EOF
-          } >> "$GITHUB_OUTPUT";
+      # Drafts your next Release notes as Pull Requests are merged into "master"
+      - name: Draft Release Notes 
+        uses: release-drafter/release-drafter@v6
         env:
-          RELEASE_NOTES: ${{ steps.generated-notes.outputs.release-notes }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub Release
+      # Step 3: Create the GitHub Release based on the drafted notes
+      - name: Create Release on GitHub
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          name: v${{ steps.version.outputs.version }}
-          body:  ${{ steps.cleaned-notes.outputs.notes }}
+          name: "Release ${{ github.ref_name }}"
+          body: ${{ steps.draft_release_notes.outputs.body }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  

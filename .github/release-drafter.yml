@@ -1,0 +1,28 @@
+name: Automated Release Notes
+
+tag_template: 'v$NEXT_PATCH_VERSION'
+
+categories:
+  - title: '🚀 New Features'
+    labels:
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+  - title: '⚙️ Maintenance'
+    labels:
+      - 'maintenance'
+  - title: '📄 Documentation'
+    labels:
+      - 'documentation'
+
+changelog_generator:
+  # Default changelog generator is based on pull request labels and milestone
+  # Here you can specify different rules for your project if necessary
+  template: |
+    ## Changes
+    $CHANGES
+  sort_by: 'created_at' # You can adjust the sorting of PRs (default is 'updated_at')
+
+# Optional - Auto merge pull requests based on labels
+automerge: true
