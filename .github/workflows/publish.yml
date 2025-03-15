@@ -43,7 +43,9 @@ jobs:
           fi
 
           # Save the release body to a file instead of the environment variable
-          echo "$RELEASE_BODY" > release_notes.txt
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo "$RELEASE_BODY" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       # Step 4: Create the release on GitHub
       - name: Create GitHub Release
