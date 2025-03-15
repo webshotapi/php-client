@@ -34,11 +34,24 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first release of the project!"
           else
-            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%H" --reverse)
+            # Retrieve commit hashes, usernames, and commit messages
+            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%h %ae: %s" --reverse)
             for COMMIT in $COMMITS; do
-              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
-              COMMIT_URL="$REPO_URL/commit/$COMMIT"
-              RELEASE_BODY+=" - 🔹 [$COMMIT]($COMMIT_URL) $MESSAGE\n"
+              SHORT_HASH=$(echo $COMMIT | cut -d' ' -f1)
+              AUTHOR_EMAIL=$(echo $COMMIT | cut -d' ' -f2)
+              MESSAGE=$(echo $COMMIT | cut -d' ' -f3-)
+              COMMIT_URL="$REPO_URL/commit/$SHORT_HASH"
+              
+              # Fetch GitHub login from email address
+              GITHUB_LOGIN=$(curl -s "https://api.github.com/search/users?q=${AUTHOR_EMAIL}+in:email" | jq -r '.items[0].login')
+
+              # If GitHub login is found, format with @username
+              if [ "$GITHUB_LOGIN" != "null" ]; then
+                RELEASE_BODY+=" - 🔹 [$SHORT_HASH]($COMMIT_URL) by @$GITHUB_LOGIN: $MESSAGE\n"
+              else
+                # If GitHub login isn't found, fall back to the author's email
+                RELEASE_BODY+=" - 🔹 [$SHORT_HASH]($COMMIT_URL) by <$AUTHOR_EMAIL>: $MESSAGE\n"
+              fi
             done
           fi
 
