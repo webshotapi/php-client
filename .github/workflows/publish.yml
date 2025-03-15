@@ -23,8 +23,10 @@ jobs:
           echo "Previous tag: $PREV_TAG"
           echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
 
-      - name: Generate Release Notes
+      - name: Generate Release Notes with GitHub Logins
         id: release_notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           REPO_URL="https://github.com/${{ github.repository }}"
           RELEASE_BODY="## ✨ What's New in ${{ github.ref_name }}\n\n### 🔥 Changes\n"
@@ -36,17 +38,25 @@ jobs:
 
             for COMMIT in $COMMITS; do
               MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
-              AUTHOR=$(gh api repos/${{ github.repository }}/commits/$COMMIT --jq '.author.login' || echo "unknown")
+              COMMIT_EMAIL=$(git log -1 --pretty=format:"%ae" $COMMIT)
+
+              # Fetch GitHub username from commit's email
+              AUTHOR=$(curl -s -H "Authorization: token $GH_TOKEN" \
+                          "https://api.github.com/search/users?q=$COMMIT_EMAIL+in:email" \
+                          | jq -r '.items[0].login' || echo "unknown")
+
+              # Add commit message with clickable link
               RELEASE_BODY+=" - 🔹 [\`${COMMIT:0:7}\`]($REPO_URL/commit/$COMMIT) $MESSAGE by **[@$AUTHOR]($REPO_URL/commits?author=$AUTHOR)**\n"
             done
 
             RELEASE_BODY+="\n💡 _Full commit history [here]($REPO_URL/compare/$PREV_TAG...${{ github.ref_name }})_"
           fi
 
+          # Ensure the body is treated as Markdown
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
           echo "$RELEASE_BODY" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-          
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
