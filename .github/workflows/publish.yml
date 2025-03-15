@@ -43,6 +43,8 @@ jobs:
             done
           fi
 
+          echo $RELEASE_BODY > release_notes.txt
+
       # Step 4: Load release notes into an environment variable
       - name: Load release notes into variable
         id: load_notes
