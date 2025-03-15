@@ -1,55 +1,57 @@
-name: Release Drafter
+name: Create Release with Release Notes
 
 on:
   push:
     tags:
-      - 'v*'  # Triggers only when a tag like v1.0.0 is pushed
-
-  # pull_request event is required only for autolabeler
-  pull_request:
-    # Only following types are handled by the action, but one can default to all as well
-    types: [opened, reopened, synchronize]
-  # pull_request_target event is required for autolabeler to support PRs from forks
-  # pull_request_target:
-  #   types: [opened, reopened, synchronize]
-
-permissions:
-  contents: read
+      - 'v*'  # This will trigger the workflow on any tag that starts with "v" (e.g., v1.0.0)
 
 jobs:
-  create_new_release:
-    permissions:
-      # write permission is required to create a github release
-      contents: write
-      # write permission is required for autolabeler
-      # otherwise, read permission is required at least
-      pull-requests: write
+  create_release:
     runs-on: ubuntu-latest
+
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch full history to access all tags and commits
-      # (Optional) GitHub Enterprise requires GHE_HOST variable set
-      #- name: Set GHE_HOST
-      #  run: |
-      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
+          fetch-depth: 0  # To fetch all history and tags
 
-      # Drafts your next Release notes as Pull Requests are merged into "master"
-      - name: Draft Release Notes 
-        id: draft_release_notes
-        uses: release-drafter/release-drafter@v6
+      # Step 2: Get the previous tag (previous release)
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p' || echo "")
+          echo "Previous tag: $PREV_TAG"
+          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
+
+      # Step 3: Generate release notes from commits
+      - name: Generate release notes
+        id: release_notes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO_URL="https://github.com/${{ github.repository }}"
+          RELEASE_BODY="## What's New in ${{ github.ref_name }}\n\n### Changes:\n"
+          
+          if [ -z "$PREV_TAG" ]; then
+            RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first release of the project!"
+          else
+            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%H" --reverse)
+            for COMMIT in $COMMITS; do
+              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
+              COMMIT_URL="$REPO_URL/commit/$COMMIT"
+              RELEASE_BODY+=" - 🔹 [$COMMIT]( $COMMIT_URL) $MESSAGE\n"
+            done
+          fi
 
-      # Step 3: Create the GitHub Release based on the drafted notes
-      - name: Create Release on GitHub
+          echo "$RELEASE_BODY" >> $GITHUB_ENV
+
+      # Step 4: Create the release on GitHub
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: ${{ steps.draft_release_notes.outputs.body }}
+          body: "${{ env.RELEASE_BODY }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
