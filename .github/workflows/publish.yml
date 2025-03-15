@@ -28,7 +28,9 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             echo "RELEASE_BODY=First release 🚀" >> $GITHUB_ENV
           else
+            echo $PREV_TAG
             COMMIT_LOG=$(git log $PREV_TAG..HEAD --pretty=format:"- [%h](<$REPO_URL%H>) %s by @%an" --reverse)
+            echo $COMMIT_LOG
             echo "Release Notes:"
             echo "$COMMIT_LOG"
             echo "RELEASE_BODY=## Changes\n\n$COMMIT_LOG" >> $GITHUB_ENV
