@@ -13,55 +13,83 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Ensure full history is fetched
 
-      - name: Get Previous Tag
-        id: prev_tag
+      - name: Remove optional "v" prefix
+        id: version
         run: |
-          PREV_TAG=$(git describe --tags --abbrev=0 --exclude=$(git describe --tags))
-          echo "Previous tag: $PREV_TAG"
-          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
-
-      - name: Generate Release Notes with GitHub Logins
-        id: release_notes
+          echo "version=${VERSION#v}" >> "$GITHUB_OUTPUT"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ inputs.version }}
+
+      - name: Check if branch and version match
+        id: guard
         run: |
-          REPO_URL="https://github.com/${{ github.repository }}"
-          RELEASE_BODY="## ✨ What's New in ${{ github.ref_name }}\n\n### 🔥 Changes\n"
+          MAJOR_VERSION="${NUMERIC_VERSION%%.*}"
+          BRANCH_MAJOR_VERSION="${BRANCH%%.*}"
 
-          if [ -z "$PREV_TAG" ]; then
-            RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first official release of this project!"
+          if [ "$MAJOR_VERSION" != "$BRANCH_MAJOR_VERSION" ]; then
+            echo "Mismatched versions! Aborting."
+            VERSION_MISMATCH='true';
           else
-            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%H" --reverse)
-
-            for COMMIT in $COMMITS; do
-              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
-              COMMIT_EMAIL=$(git log -1 --pretty=format:"%ae" $COMMIT)
-
-              # Fetch GitHub username from commit's email
-              AUTHOR=$(curl -s -H "Authorization: token $GH_TOKEN" \
-                          "https://api.github.com/search/users?q=$COMMIT_EMAIL+in:email" \
-                          | jq -r '.items[0].login' || echo "unknown")
-
-              # Add commit message with clickable link
-              RELEASE_BODY+=" - 🔹 [\`${COMMIT:0:7}\`]($REPO_URL/commit/$COMMIT) $MESSAGE by **[@$AUTHOR]($REPO_URL/commits?author=$AUTHOR)**\n"
-            done
-
-            RELEASE_BODY+="\n💡 _Full commit history [here]($REPO_URL/compare/$PREV_TAG...${{ github.ref_name }})_"
+            echo "Versions match! Proceeding."
+            VERSION_MISMATCH='false';
           fi
 
-          # Ensure the body is treated as Markdown
-          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          echo "$RELEASE_BODY" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "VERSION_MISMATCH=$(echo $VERSION_MISMATCH)" >> "$GITHUB_OUTPUT";
+        env:
+          BRANCH: ${{ github.ref_name }}
+          NUMERIC_VERSION: ${{ steps.version.outputs.version }}
+
+      - name: Fail if branch and release tag do not match
+        if: ${{ steps.guard.outputs.VERSION_MISMATCH == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+              core.setFailed('Workflow failed. Release version does not match with selected target branch. Did you select the correct branch?')
+
+      - name: Generate release notes
+        id: generated-notes
+        uses: RedCrafter07/release-notes-action@main
+        with:
+          tag-name: v${{ steps.version.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+
+      - name: Cleanup release notes
+        id: cleaned-notes
+        run: |
+          START_FROM=$(echo -n "$RELEASE_NOTES" | awk "/What's Changed/{ print NR; exit }" -)
+          DROP_FROM_CONTRIBUTORS=$(echo -n "$RELEASE_NOTES" | awk "/New Contributors/{ print NR; exit }" -)
+          DROP_FROM_FULL_CHANGELOG=$(echo -n "$RELEASE_NOTES" | awk "/Full Changelog/{ print NR; exit }" -)
+
+          # Drop everything starting from "Full Changelog"
+          if [ ! -z "$DROP_FROM_FULL_CHANGELOG" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_FULL_CHANGELOG},$ d")
+          fi
+
+          # Drop everything starting from "New Contributors"
+          if [ ! -z "$DROP_FROM_CONTRIBUTORS" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_CONTRIBUTORS},$ d")
+          fi
+
+          # Drop the line "What's Changed"
+          if [ ! -z "$START_FROM" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${START_FROM}d")
+          fi
+
+          {
+            echo 'notes<<EOF'
+            echo "$RELEASE_NOTES"
+            echo EOF
+          } >> "$GITHUB_OUTPUT";
+        env:
+          RELEASE_NOTES: ${{ steps.generated-notes.outputs.release-notes }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          name: "Release ${{ github.ref_name }}"
-          body: "${{ env.RELEASE_BODY }}"
+          name: v${{ steps.version.outputs.version }}
+          body:  ${{ steps.cleaned-notes.outputs.notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
