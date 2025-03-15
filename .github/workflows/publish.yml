@@ -42,21 +42,24 @@ jobs:
             done
           fi
 
-          echo "$RELEASE_BODY" > release_notes.txt
-          RELEASE_BODY=$(cat release_notes.txt)
-          
           # Save the release body to a file instead of the environment variable
+          echo "$RELEASE_BODY" > release_notes.txt
+
+      # Step 4: Load release notes into an environment variable
+      - name: Load release notes into variable
+        id: load_notes
+        run: |
+          RELEASE_BODY=$(cat release_notes.txt)
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
           echo "$RELEASE_BODY" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
-      # Step 4: Create the release on GitHub
+          
+      # Step 5: Create the release on GitHub
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: ${{ env.RELEASE_BODY }}  # Use the loaded environment variable
+          body: ${{ env.RELEASE_BODY }}  # Use the loaded environment variable with markdown
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
