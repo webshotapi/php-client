@@ -27,8 +27,6 @@ jobs:
       # Step 3: Generate release notes from commits
       - name: Generate release notes
         id: release_notes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           REPO_URL="https://github.com/${{ github.repository }}"
           RELEASE_BODY="## What's New in ${{ github.ref_name }}\n\n### Changes:\n"
