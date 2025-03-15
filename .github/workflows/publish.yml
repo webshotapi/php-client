@@ -24,10 +24,11 @@ jobs:
       - name: Generate Release Notes
         id: release_notes
         run: |
+          REPO_URL="https://github.com/${{ github.repository }}/commit/"
           if [ -z "$PREV_TAG" ]; then
             echo "RELEASE_BODY=First release 🚀" >> $GITHUB_ENV
           else
-            COMMIT_LOG=$(git log $PREV_TAG..HEAD --pretty=format:"- %s by @%an" --reverse)
+            COMMIT_LOG=$(git log $PREV_TAG..HEAD --pretty=format:"- [%h](<$REPO_URL%H>) %s by @%an" --reverse)
             echo "Release Notes:"
             echo "$COMMIT_LOG"
             echo "RELEASE_BODY=## Changes\n\n$COMMIT_LOG" >> $GITHUB_ENV
