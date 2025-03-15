@@ -54,3 +54,4 @@ jobs:
           body: $(cat release_notes.txt)  # Use the contents of the file as the release body
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
