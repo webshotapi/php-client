@@ -6,7 +6,7 @@ on:
       - 'v*'  # Triggers only when a tag like v1.0.0 is pushed
 
 jobs:
-  release:
+  create-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
 
@@ -14,11 +14,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get Previous Tag
+        id: prev_tag
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 --exclude=${{ github.ref_name }} || echo "")
+          echo "Previous tag: $PREV_TAG"
+          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
+
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          if [ -z "$PREV_TAG" ]; then
+            echo "RELEASE_BODY=First release 🚀" >> $GITHUB_ENV
+          else
+            COMMIT_LOG=$(git log $PREV_TAG..HEAD --pretty=format:"- %s by @%an" --reverse)
+            echo "Release Notes:"
+            echo "$COMMIT_LOG"
+            echo "RELEASE_BODY=## Changes\n\n$COMMIT_LOG" >> $GITHUB_ENV
+          fi
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: "## Changes\n\n- Automated release for tag ${{ github.ref_name }}"
+          body: "${{ env.RELEASE_BODY }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
