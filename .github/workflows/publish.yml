@@ -44,7 +44,6 @@ jobs:
 
           # Save the release body to a file instead of the environment variable
           echo "$RELEASE_BODY" > release_notes.txt
-          echo $RELEASE_BODY
 
       # Step 4: Create the release on GitHub
       - name: Create GitHub Release
@@ -52,8 +51,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: |
-            $(cat release_notes.txt)  # Execute cat command and insert contents as release notes
+          body: ${{ env.RELEASE_BODY }}  # Use the loaded environment variable
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
