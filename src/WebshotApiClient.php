@@ -28,13 +28,12 @@ class WebshotApiClient implements ClientInterface {
     /**
      * Create pdf of specific url
      *
-     * @param string $url
      * @param array $data
      * @return ResponseInterface
      * @throws Exceptions\WebshotApiClientException
      */
-    function pdf(string $url, array $data = []): ResponseInterface{
-        return $this->screenshot($url, [
+    function pdf(array $data = []): ResponseInterface{
+        return $this->screenshot([
             ...$data,
             'image_type' => 'pdf'
         ]);
@@ -60,23 +59,69 @@ class WebshotApiClient implements ClientInterface {
     }
 
     /**
-     *  Create screenshot for specific url and params
+     *  Create video for specific url and params
      *
-     * @param string $url
-     * @param array $data - parameters to take screnshot from webshotapi.com/docs
+     * @param array $data - parameters to record video from webshotapi.com/docs/get-started/parameters/
      * @param bool $json_response - return response as json
      * @return ResponseInterface
      * @throws WebshotApiClientException
      */
-    function screenshot(string $url, array $data, bool $json_response = false): ResponseInterface{
+    function video(array $data, bool $json_response = false): ResponseInterface {
 
         try {
-            $data['url'] = $url;
+            $video_format = "mp4";
+            if (isset($data['video_format'])){
+                if (!in_array($data['video_format'], ['mp4','mov','gif','avi','webm']))
+                    throw new WebshotApiClientException('Wrong video format. Accept only: mp4,mov,gif,avi,webm');
 
+                $video_format = $data['video_format'];
+            }
+
+            $base = new Base($this);
+            $fileType = $json_response
+                ? FileTypeFactory::factory('json')
+                : FileTypeFactory::factory($video_format);
+
+            $base->setHeaders([
+                'Accept' => $fileType->getMime()
+            ]);
+
+            return $base->method([
+                'path' => $json_response ? 'video/json' : 'video/binary',
+                'data' => $data,
+                'method' => 'POST'
+            ]);
+        } catch (ClientException $e){
+            throw $this->exceptionHandle($e);
+        }
+    }
+
+    /**
+     *  Create video and return output file as url in json object
+     *
+     * @param array $data
+     * @return ResponseInterface
+     * @throws WebshotApiClientException
+     */
+    function videoJson(array $data): ResponseInterface{
+        return $this->video($data, true);
+    }
+
+    /**
+     *  Create screenshot for specific url and params
+     *
+     * @param array $data - parameters to take screnshot from webshotapi.com/docs/get-started/parameters/
+     * @param bool $json_response - return response as json
+     * @return ResponseInterface
+     * @throws WebshotApiClientException
+     */
+    function screenshot(array $data, bool $json_response = false): ResponseInterface {
+
+        try {
             $image_type = "jpg";
             if (isset($data['image_type'])){
                 if (!in_array($data['image_type'], ['jpg','png','pdf','webp']))
-                    throw new WebshotApiClientException('Wrong screenshot format accept only jpg, png, webp or pdf');
+                    throw new WebshotApiClientException('Wrong screenshot format. Accept only: jpg, png, webp or pdf');
 
                 $image_type = $data['image_type'];
             }
@@ -91,7 +136,7 @@ class WebshotApiClient implements ClientInterface {
             ]);
 
             return $base->method([
-                'path' => $json_response ? 'screenshot/json' : 'screenshot/image',
+                'path' => $json_response ? 'screenshot/json' : 'screenshot/binary',
                 'data' => $data,
                 'method' => 'POST'
             ]);
@@ -101,30 +146,27 @@ class WebshotApiClient implements ClientInterface {
     }
 
     /**
-     *  Create screenshot and return object with direct url to screenshot
+     *  Create screenshot and return output file as url in json object
      *
-     * @param string $url
      * @param array $data
      * @return ResponseInterface
      * @throws WebshotApiClientException
      */
-    function screenshotJson(string $url, array $data): ResponseInterface{
-        return $this->screenshot($url, $data, true);
+    function screenshotJson(array $data): ResponseInterface{
+        return $this->screenshot($data, true);
     }
 
     /**
      * Extract html, plain text, words coordinates with styles
-     * @example $client->extract('https://example.com,['extract_words'=>true]);
+     * @example $client->extract(['url' => 'https://example.com','extract_words'=>true]);
      *
-     * @param string $url
      * @param array $data
      * @return ResponseInterface
      * @throws Exceptions\WebshotApiClientException
      */
-    function extract(string $url, array $data): ResponseInterface{
+    function extract(array $data): ResponseInterface{
 
         try {
-            $data['url'] = $url;
 
             $base = new Base($this);
 

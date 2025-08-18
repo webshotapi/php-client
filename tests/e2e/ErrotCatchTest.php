@@ -12,11 +12,11 @@ class ErrotCatchTest extends BaseCase
         try {
             $client = new WebshotApiClient('WRONG_API_KEY');
             $resp = $client->extract(
-                'https://example.com',
                 [
-                    'ads' => true,
+                    'url' => 'https://example.com',
+                    'block_ads' => true,
                     'remove_modals' => true,
-                    'width' => 1024
+                    'viewport_width' => 1024
                 ]
             );
 

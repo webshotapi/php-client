@@ -10,11 +10,11 @@ class ExtractTest extends BaseCase
     {
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->extract(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024
+                'viewport_width' => 1024
             ]
         );
 

@@ -42,14 +42,15 @@ try{
     $SAVE_PATH = '/tmp/save2.jpg';
     
     $params = array(
+        'url' => $URL,
         'remove_modals' => true, // Remove cookies popups before take screenshot
         //'image_type' => 'webp', // To generate webp image 
         //'image_type' => 'pdf', // To generate pdf file 
         'premium_proxy' => false, // use premium proxy 
         'geotargeting' => 'us', // use ip from USA
-        'ads' => '1', // Remove ads
-        'width' => '1280',
-        'height' => '2040',
+        'block_ads' => '1', // Remove ads
+        'viewport_width' => '1280',
+        'viewport_height' => '2040',
         'image_quality' => 75,
         'transparent_background' => false,
         'full_page' => true,
@@ -58,8 +59,44 @@ try{
     $webshotapi = new WebshotApiClient($API_KEY);
     
     //Download, save jpg and send to browser
-    $response = $webshotapi->screenshot($URL, $params);
+    $response = $webshotapi->screenshot($params);
     $response->save($SAVE_PATH);
+
+} catch (WebshotApiClientException $e){
+    echo"ERROR: ";
+    echo $e->getMessage();
+}
+```
+
+### Record scrolling video and save to mp4 file
+You can covert your html page to scrolling movie
+```php
+<?php
+
+include_once __DIR__ . '/../vendor/autoload.php';
+
+use Webshotapi\Client\WebshotApiClient;
+use Webshotapi\Client\Exceptions\WebshotApiClientException;
+
+try{
+    
+    $API_KEY = 'YOU_API_KEY';
+    $URL = 'PUT_LINK_TO_WEBSITE_HERE';
+    
+    $SAVE_PATH = '/tmp/save2.pdf';
+    
+    $params = array(
+        'url' => $URL,
+        'viewport_width' => '1920',
+        'viewport_height' => '1080',
+    );
+    
+    $webshotapi = new WebshotApiClient($API_KEY);
+    
+    //Download, save jpg and send to browser
+    $response = $webshotapi->videoJson($params);
+    $response->save($SAVE_PATH);
+    
 
 } catch (WebshotApiClientException $e){
     echo"ERROR: ";
@@ -85,25 +122,16 @@ try{
     $SAVE_PATH = '/tmp/save2.pdf';
     
     $params = array(
-        'width' => '1280',
-        'height' => '2040',
-        'scroll_to_bottom' => '0',
-        'wait_for_selector' => '',
-        'wait_for_xpath' => '',
-        'image_quality' => 75,
-        'transparent_background' => false,
-        'user_agent' => '',
-        'accept_language' => '',
-        'full_page' => true,
-        'timezone' => '',
-        'fail_statuscode' => '',
-        'capture_element_selector' => '',
+        'url' => $URL,
+        'viewport_width' => '1280',
+        'viewport_height' => '2040',
+  
     );
     
     $webshotapi = new WebshotApiClient($API_KEY);
     
     //Download, save jpg and send to browser
-    $response = $webshotapi->pdf($URL, $params);
+    $response = $webshotapi->pdf($params);
     $response->save($SAVE_PATH);
     
 
@@ -134,6 +162,7 @@ $SAVE_PATH = '/tmp/save2.json';
 
 $params = array(
     [
+        'url' => $URL,
         'extract_selectors' => true,
         'extract_words' => true,
         'extract_style' => 1,//0 - skip styles, 1 - download most import css styles, 2 - download all styles for element
@@ -143,7 +172,7 @@ $params = array(
 $webshotapi = new WebshotApiClient($API_KEY);
 
 //Download, save jpg and send to browser
-$response = $webshotapi->extract($URL, $params);
+$response = $webshotapi->extract($params);
 
 // Save to file
 $response->save($SAVE_PATH);

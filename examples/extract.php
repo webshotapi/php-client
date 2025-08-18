@@ -9,7 +9,8 @@ try{
     // Paste your API key here
     $API_CLIENT = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
     $client = new WebshotApiClient($API_CLIENT);
-    $response = $client->extract('https://example.com', [
+    $response = $client->extract( [
+          "url" => 'https://example.com',
           "extract_text" => true,
           "extract_html" => true,
           "extract_selectors" => true,

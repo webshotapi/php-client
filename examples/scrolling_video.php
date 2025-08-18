@@ -8,17 +8,17 @@ use Webshotapi\Client\WebshotApiClient;
 try{
     // Paste your API key here
     $API_CLIENT = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
-    $client = new WebshotApiClient($API_CLIENT);
-    $response = $client->screenshot(
-        [
-            "url" => 'https://example.com',
-            'viewport_width' => 1024,
-            'full_page' => true,
-            'image_type' => 'png' // jpg, png, pdf, webp
-        ],
-    );
 
-    $response->save('/tmp/screenshot.png');
+    $client = new WebshotApiClient($API_CLIENT);
+    $response = $client->video([
+        "url" => 'https://example.com',
+        "scrolling_enable" => true,
+        'viewport_width' => 1920,
+        'full_page' => true,
+        'remove_modals' => true, // Remove cookies popup
+    ]);
+
+    $response->save('/tmp/screenshot.jpg');
 
 }catch(WebshotApiClientException $e) {
     echo 'Client error';

@@ -10,11 +10,11 @@ class ScreenshotTest extends BaseCase
     function test_take_screenshot(){
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->screenshot(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024
+                'viewport_width' => 1024
             ]
         );
 
@@ -40,11 +40,11 @@ class ScreenshotTest extends BaseCase
     function test_take_screenshot_pdf(){
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->pdf(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024
+                'viewport_width' => 1024
             ]
         );
 
@@ -61,11 +61,11 @@ class ScreenshotTest extends BaseCase
     function test_take_screenshot_png(){
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->screenshot(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024,
+                'viewport_width' => 1024,
                 'image_type' => 'png'
             ]
         );
@@ -81,11 +81,11 @@ class ScreenshotTest extends BaseCase
     function test_take_screenshot_webp(){
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->screenshot(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024,
+                'viewport_width' => 1024,
                 'image_type' => 'webp'
             ]
         );
@@ -101,11 +101,11 @@ class ScreenshotTest extends BaseCase
     function test_take_screenshot_json(){
         $client = new WebshotApiClient($this->getApiKey());
         $resp = $client->screenshotJson(
-            'https://example.com',
             [
-                'ads' => true,
+                'url' => 'https://example.com',
+                'block_ads' => true,
                 'remove_modals' => true,
-                'width' => 1024,
+                'viewport_width' => 1024,
                 'image_type' => 'webp'
             ]
         );

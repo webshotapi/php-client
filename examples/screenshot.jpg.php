@@ -10,8 +10,9 @@ try{
     $API_CLIENT = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
 
     $client = new WebshotApiClient($API_CLIENT);
-    $response = $client->screenshot('https://example.com', [
-        'width' => 1024,
+    $response = $client->screenshot([
+        "url" => 'https://example.com',
+        'viewport_width' => 1024,
         'full_page' => true,
         'remove_modals' => true, // Remove cookies popup
     ]);
