@@ -88,6 +88,7 @@ try{
     $params = array(
         'url' => $URL,
         'viewport_width' => '1920',
+        'scrolling_enable' => true,
         'viewport_height' => '1080',
     );
     
