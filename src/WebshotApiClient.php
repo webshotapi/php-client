@@ -19,10 +19,10 @@ class WebshotApiClient implements ClientInterface {
      * @param string $api_key
      * @param string|null $endpoint
      */
-    function __construct(string $api_key, string | null $endpoint = null){
-        $this->api_key = $api_key;
+    function __construct(string $api_key = "", string | null $endpoint = null){
+        $this->api_key = $api_key ?: getenv('WEBSHOTAPI_KEY') ?: "";
         if ($endpoint) $this->endpoint = $endpoint;
-        else $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT')  ? getenv('WEBSHOTAPI_ENDPOINT') :  'https://api.webshotapi.com/v1/';
+        else $this->endpoint = getenv('WEBSHOTAPI_ENDPOINT') ?: 'https://api.webshotapi.com/v1/';
     }
 
     /**
@@ -72,7 +72,7 @@ class WebshotApiClient implements ClientInterface {
             $video_format = "mp4";
             if (isset($data['video_format'])){
                 if (!in_array($data['video_format'], ['mp4','mov','gif','avi','webm']))
-                    throw new WebshotApiClientException('Wrong video format. Accept only: mp4,mov,gif,avi,webm');
+                    throw new WebshotApiClientException('Wrong video format. Accept only: mp4,mov,gif,avi,webm', 400);
 
                 $video_format = $data['video_format'];
             }
@@ -87,7 +87,7 @@ class WebshotApiClient implements ClientInterface {
             ]);
 
             return $base->method([
-                'path' => $json_response ? 'video/json' : 'video/binary',
+                'path' => $json_response ? "video/json" : "video/binary",
                 'data' => $data,
                 'method' => 'POST'
             ]);
@@ -121,7 +121,7 @@ class WebshotApiClient implements ClientInterface {
             $image_type = "jpg";
             if (isset($data['image_type'])){
                 if (!in_array($data['image_type'], ['jpg','png','pdf','webp']))
-                    throw new WebshotApiClientException('Wrong screenshot format. Accept only: jpg, png, webp or pdf');
+                    throw new WebshotApiClientException('Wrong screenshot format. Accept only: jpg, png, webp or pdf', 400);
 
                 $image_type = $data['image_type'];
             }
@@ -178,7 +178,7 @@ class WebshotApiClient implements ClientInterface {
 
             return $base->method([
                 'method' => 'POST',
-                'path' => 'extract',
+                'path' => "extract",
                 'data' => $data,
             ]);
 

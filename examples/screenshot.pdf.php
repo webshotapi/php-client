@@ -7,7 +7,7 @@ use Webshotapi\Client\WebshotApiClient;
 
 try{
     // Paste your API key here
-    $API_CLIENT = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
+    $API_CLIENT = 'd609cd1c96102bed02739b328ff35eb9';
     $client = new WebshotApiClient($API_CLIENT);
     $response = $client->pdf([
         "url" => 'https://example.com',

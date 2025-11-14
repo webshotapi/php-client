@@ -8,7 +8,7 @@ use Webshotapi\Client\Exceptions\WebshotApiClientException;
 try{
 
     // Paste your API key here
-    $API_KEY = '7815696ecbf1c96e6894b779456d330e7815696ecbf1c96e6894b779456d330d';
+    $API_KEY = 'd609cd1c96102bed02739b328ff35eb9';
     $URL = 'https://example.com';
 
     $SAVE_PATH = '/tmp/save2.json';

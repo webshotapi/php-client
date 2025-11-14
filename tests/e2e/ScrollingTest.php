@@ -7,7 +7,7 @@ use Webshotapi\Client\WebshotApiClient;
 class ScrollingTest extends BaseCase
 {
     function test_take_scrolling(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->video(
             [
                 'url' => 'https://example.com',
@@ -29,7 +29,7 @@ class ScrollingTest extends BaseCase
 
 
     function test_take_video_json(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->videoJson(
             [
                 'url' => 'https://example.com',

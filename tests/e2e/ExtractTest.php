@@ -8,7 +8,7 @@ class ExtractTest extends BaseCase
 {
     function test_take_extract()
     {
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->extract(
             [
                 'url' => 'https://example.com',

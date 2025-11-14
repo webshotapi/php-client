@@ -8,7 +8,7 @@ use Webshotapi\Client\WebshotApiClient;
 class ScreenshotTest extends BaseCase
 {
     function test_take_screenshot(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->screenshot(
             [
                 'url' => 'https://example.com',
@@ -28,7 +28,7 @@ class ScreenshotTest extends BaseCase
     }
 
     function test_should_catch_exception(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $this->expectException(WebshotApiClientException::class);
         $resp = $client->download(
             'https://example.com/sdfsfsd/fdsafsa',
@@ -38,7 +38,7 @@ class ScreenshotTest extends BaseCase
     }
 
     function test_take_screenshot_pdf(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->pdf(
             [
                 'url' => 'https://example.com',
@@ -59,7 +59,7 @@ class ScreenshotTest extends BaseCase
     }
 
     function test_take_screenshot_png(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->screenshot(
             [
                 'url' => 'https://example.com',
@@ -79,7 +79,7 @@ class ScreenshotTest extends BaseCase
     }
 
     function test_take_screenshot_webp(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->screenshot(
             [
                 'url' => 'https://example.com',
@@ -99,7 +99,7 @@ class ScreenshotTest extends BaseCase
     }
 
     function test_take_screenshot_json(){
-        $client = new WebshotApiClient($this->getApiKey());
+        $client = new WebshotApiClient();
         $resp = $client->screenshotJson(
             [
                 'url' => 'https://example.com',

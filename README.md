@@ -69,7 +69,7 @@ try{
 ```
 
 ### Record scrolling video and save to mp4 file
-You can covert your html page to scrolling movie
+You can convert your html page to scrolling movie
 ```php
 <?php
 
