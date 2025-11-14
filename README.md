@@ -25,49 +25,6 @@ Api key you can generate after register.
 
 ## Usage
 
-### Take screenshot and save jpg to file
-```php
-<?php
-
-include_once __DIR__ . '/../vendor/autoload.php';
-
-use Webshotapi\Client\WebshotApiClient;
-use Webshotapi\Client\Exceptions\WebshotApiClientException;
-
-try{
-
-    $API_KEY = 'YOU_API_KEY';
-    $URL = 'PUT_LINK_TO_WEBSITE_HERE';
-    
-    $SAVE_PATH = '/tmp/save2.jpg';
-    
-    $params = array(
-        'url' => $URL,
-        'remove_modals' => true, // Remove cookies popups before take screenshot
-        //'image_type' => 'webp', // To generate webp image 
-        //'image_type' => 'pdf', // To generate pdf file 
-        'premium_proxy' => false, // use premium proxy 
-        'geotargeting' => 'us', // use ip from USA
-        'block_ads' => '1', // Remove ads
-        'viewport_width' => '1280',
-        'viewport_height' => '2040',
-        'image_quality' => 75,
-        'transparent_background' => false,
-        'full_page' => true,
-    );
-    
-    $webshotapi = new WebshotApiClient($API_KEY);
-    
-    //Download, save jpg and send to browser
-    $response = $webshotapi->screenshot($params);
-    $response->save($SAVE_PATH);
-
-} catch (WebshotApiClientException $e){
-    echo"ERROR: ";
-    echo $e->getMessage();
-}
-```
-
 ### Record scrolling video and save to mp4 file
 You can convert your HTML page into a scrolling movie.
 
@@ -104,6 +61,50 @@ try{
     $response = $webshotapi->videoJson($params);
     $response->save($SAVE_PATH);
     
+
+} catch (WebshotApiClientException $e){
+    echo"ERROR: ";
+    echo $e->getMessage();
+}
+```
+
+
+### Take screenshot and save jpg to file
+```php
+<?php
+
+include_once __DIR__ . '/../vendor/autoload.php';
+
+use Webshotapi\Client\WebshotApiClient;
+use Webshotapi\Client\Exceptions\WebshotApiClientException;
+
+try{
+
+    $API_KEY = 'YOU_API_KEY';
+    $URL = 'PUT_LINK_TO_WEBSITE_HERE';
+    
+    $SAVE_PATH = '/tmp/save2.jpg';
+    
+    $params = array(
+        'url' => $URL,
+        'remove_modals' => true, // Remove cookies popups before take screenshot
+        //'image_type' => 'webp', // To generate webp image 
+        //'image_type' => 'pdf', // To generate pdf file 
+        'premium_proxy' => false, // use premium proxy 
+        'geotargeting' => 'us', // use ip from USA
+        'block_ads' => '1', // Remove ads
+        'viewport_width' => '1280',
+        'viewport_height' => '2040',
+        'image_quality' => 75,
+        'transparent_background' => false,
+        'full_page' => true,
+    );
+    
+    $webshotapi = new WebshotApiClient($API_KEY);
+    
+    //Download, save jpg and send to browser
+    $response = $webshotapi->screenshot($params);
+    $response->save($SAVE_PATH);
 
 } catch (WebshotApiClientException $e){
     echo"ERROR: ";
