@@ -69,10 +69,10 @@ try{
 ```
 
 ### Record scrolling video and save to mp4 file
-You can convert your html page to scrolling movie
+You can convert your HTML page into a scrolling movie.
 
 Example gif:
-[![](https://github.com/webshotapi/php-client/blob/main/images/stripe-video.gif?raw=true)](https://github.com/webshotapi/php-client/blob/main/images/stripe-video.gif?raw=true)
+[![](https://raw.githubusercontent.com/webshotapi/php-client/63375165338d074d9b54a076977b489a6d913d2b/images/stripe-video.gif)](https://raw.githubusercontent.com/webshotapi/php-client/63375165338d074d9b54a076977b489a6d913d2b/images/stripe-video.gif)
 
 Link to example mp4: https://github.com/webshotapi/php-client/raw/c77cb5a3d84b58a2dfd92ba30ed6850f83d7a52e/images/stripe-video.mp4
 
