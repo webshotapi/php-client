@@ -11,14 +11,14 @@ try{
 
     $client = new WebshotApiClient($API_CLIENT);
     $response = $client->video([
-        "url" => 'https://example.com',
+        "url" => 'https://stripe.com',
         "scrolling_enable" => true,
         'viewport_width' => 1920,
         'full_page' => true,
         'remove_modals' => true, // Remove cookies popup
     ]);
 
-    $response->save('/tmp/screenshot.jpg');
+    $response->save('/tmp/screenshot.mp4');
 
 }catch(WebshotApiClientException $e) {
     echo 'Client error';
