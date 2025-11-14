@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../vendor/autoload.php';
+include_once 'vendor/autoload.php';
 
 use Webshotapi\Client\Exceptions\WebshotApiClientException;
 use Webshotapi\Client\WebshotApiClient;
